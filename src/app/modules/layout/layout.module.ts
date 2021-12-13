@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { FooterComponent } from './footer/footer.component';
+import {RouterModule} from "@angular/router";
+import {ZuliefererComponent} from "../../zulieferer/zulieferer.component";
 
 
 
@@ -14,6 +16,10 @@ import { FooterComponent } from './footer/footer.component';
   ],
   imports: [
     CommonModule
+    ,
+    RouterModule.forRoot([{path: 'zulieferer', component: ZuliefererComponent}
+    ]),
+
   ],
   exports: [
     NavbarComponent,
