@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Zulieferer} from "./zulieferer";
 import {HttpErrorResponse} from "@angular/common/http";
 import {ZuliefererServices} from "./zulieferer.services";
@@ -9,32 +9,61 @@ import {Contacts} from "../contact/contact";
 @Component({
   selector: 'app-zulieferer',
   templateUrl: './zulieferer.component.html',
-  styleUrls: ['./zulieferer.component.scss']
+  styleUrls: ['./zulieferer.component.scss'],
 })
+
 export class ZuliefererComponent implements OnInit {
-  public zulieferer: Zulieferer[] | undefined;
+  public zulieferer: Zulieferer[] = [];
   public editZulieferer: Zulieferer | undefined;
   public deleteZulieferer: Zulieferer | undefined;
+  contacts = new Map<number, Contacts[]>();
 
-
-
-
-  constructor(private zuliefererServices: ZuliefererServices) {}
+  constructor(private zuliefererServices: ZuliefererServices) {
+  }
 
   ngOnInit(): void {
-    this.getZulieferer();
+    this.getZulieferer()
+    this.updateContactsList()
+    this.printmap()
   }
+
 
   public getZulieferer(): void {
     this.zuliefererServices.getAll().subscribe(
       (response: Zulieferer[]) => {
         this.zulieferer = response;
+        this.updateContactsList()
+
       },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
+    )
+  }
+
+  public updateContactsList()
+  {
+    this.zulieferer.forEach((zulieferer) => {
+        this.contacts.set(zulieferer.id, zulieferer.contacts)
       }
     )
   }
+
+
+
+
+
+  public getcurrentContactlist(id: number): any {
+    return this.contacts.get(id);
+  }
+
+
+
+  public printmap() {
+    this.contacts.forEach((value: Contacts[], key: number) => {
+      console.log("________________________" + key, value)
+    });
+
+  }
+
+
 
   public onAddZulieferer(addZuliefererForm: NgForm): void {
 
@@ -78,8 +107,8 @@ export class ZuliefererComponent implements OnInit {
   }
 
 
-
   public onOpenModal(zulieferer: any, mode: string): void {
+
     const container = document.getElementById('main-container');
     const button = document.createElement('button');
     button.type = 'button';
@@ -95,6 +124,9 @@ export class ZuliefererComponent implements OnInit {
     if (mode === 'delete') {
       this.deleteZulieferer = zulieferer;
       button.setAttribute('data-target', '#deleteZulieferereModal');
+    }
+    if (mode === 'Contact') {
+      button.setAttribute('data-target', "zulieferContact")
     }
 
     // @ts-ignore

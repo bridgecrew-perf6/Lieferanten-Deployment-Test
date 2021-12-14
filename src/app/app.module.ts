@@ -8,6 +8,7 @@ import {ZuliefererComponent} from './zulieferer/zulieferer.component';
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { ContactComponent } from './contact/contact.component';
+import {VarDirective} from "./zulieferer/ng-var.directive";
 
 
 
@@ -15,7 +16,8 @@ import { ContactComponent } from './contact/contact.component';
   declarations: [
     AppComponent,
     ZuliefererComponent,
-    ContactComponent
+    ContactComponent,
+    VarDirective
   ],
   imports: [
     AppRoutingModule,

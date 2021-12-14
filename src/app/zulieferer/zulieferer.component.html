@@ -4,7 +4,7 @@
 
       <div *ngFor="let zulieferer of zulieferer">
         <!-- row -->
-        <div class="row">
+        <div class="row" *ngVar="zulieferer.id as zuliefererID">
           <div class="col-12">
             <!-- Liferant 01 -->
             <div class="card">
@@ -40,28 +40,82 @@
                         <th>Contact</th>
                         <th>Belongs to</th>
                         <th>Action</th>
-                        <th>contact</th>
                       </tr>
                       </thead>
 
                       <tbody>
                       <tr>
-                        <td>{{zulieferer.id}}
+                        <td>{{zulieferer.id}}</td>
                         <td>{{zulieferer.title}}</td>
                         <td>{{zulieferer.description}}</td>
                         <td>
-                          <button type="button" class="btn btn-info">Contact</button>
+
+                          <!-- Large modal -->
+                          <button type="button" class="btn btn-primary" data-toggle="modal"
+                                  data-target=".bd-example-modal-lg">Large modal
+                          </button>
+
+                          <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
+                               aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-xl">
+                              <div class="modal-content">
+
+                                <!--                                <div *ngVar="zulieferer.contacts as contacts">-->
+                                <!--                                <div *ngVar="contacts.get(zulieferer.id) as contactList">-->
+
+                                <!--                                <div *ngVar="let zuliefererID as zulieferer.id">-->
+
+                                <div *ngFor="let contacts of getcurrentContactlist(zuliefererID)">
+                                  <table class="table">
+                                    <thead class="table-dark">
+                                    <tr>
+                                      <th>Title</th>
+                                      <th>Vorname</th>
+                                      <th>Name</th>
+                                      <th>Email</th>
+                                      <th>Company</th>
+                                      <th>Mobile</th>
+                                      <th>Telefone</th>
+                                      <th>Description</th>
+                                      <th>Anmerkung</th>
+                                      <th>Updated at</th>
+                                      <th>Succeed at</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                      <td>{{contacts.title}}</td>
+                                      <td>{{contacts.vorname}}</td>
+                                      <td>{{contacts.name}}</td>
+                                      <td>{{contacts.email}}</td>
+                                      <td>{{contacts.company}}</td>
+                                      <td>{{contacts.mobile}}</td>
+                                      <td>{{contacts.telefone}}</td>
+                                      <td>{{contacts.description}}</td>
+                                      <td>{{contacts.anmerkung}}</td>
+                                      <td>{{contacts.updatedAt}}</td>
+                                      <td>{{contacts.successAt}}</td>
+                                    </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
                         </td>
                         <td> Migoa or EMK</td>
-
 
 
                         <td> <!-- The Two Button -->
                           <button (click)="onOpenModal(zulieferer, 'edit')" class="btn btn-primary"
                                   style="margin-right: 20px; ">
                             Edit <i class="fa fa-pencil-alt" style="margin-left: 10px;"></i></button>
+
+
                           <button (click)="onOpenModal(zulieferer , 'delete')" class="btn btn-danger"> delete <i
                             class="fa fa-times" style="margin-left:10px;"></i></button>
+
                         </td>
                       </tr>
                       </tbody>
@@ -141,7 +195,8 @@
                             <!-- title -->
                             <div class="form-group">
                               <label for="titleAdd">Title *</label>
-                              <input ngModel name="title" id="titleAdd" type="text" class="form-control" placeholder="title"
+                              <input ngModel name="title" id="titleAdd" type="text" class="form-control"
+                                     placeholder="title"
                                      required="required">
                             </div>
 
@@ -163,7 +218,8 @@
                           <!-- Submit button -->
 
                           <div class="modal-footer d-flex justify-content-center ">
-                            <button type="button" id="add-zulieferer-form" class="btn btn-secondary" data-dismiss="modal">
+                            <button type="button" id="add-zulieferer-form" class="btn btn-secondary"
+                                    data-dismiss="modal">
                               Close
                             </button>
                             <button [disabled]="addZuliefererForm.invalid" type="submit" class="btn btn-primary ">Save
@@ -219,7 +275,8 @@
                             <!-- Mobile -->
                             <div class="form-group">
                               <label for="mobile">Mobile</label>
-                              <input ngModel name="mobile" id="mobile" type="text" class="form-control" placeholder="Mobile">
+                              <input ngModel name="mobile" id="mobile" type="text" class="form-control"
+                                     placeholder="Mobile">
                             </div>
 
                             <!-- Telephone -->

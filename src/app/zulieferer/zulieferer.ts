@@ -9,5 +9,5 @@ export interface Zulieferer {
   updatedAt: string;
   successAt: string;
   timetableId: number;
-  contact : Contacts[]
+  contacts : Contacts[]
 }
