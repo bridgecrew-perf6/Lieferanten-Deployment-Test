@@ -4,24 +4,27 @@
     <img class="animation__shake" src="assets/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="128" width="128">
   </div>
 
-  <app-navbar></app-navbar>
+  <!-- Navigation bar with Bootstrap inside -->
+    <app-navbar></app-navbar>
+  <!-- Navigation bar with Bootstrap inside -->
+
+  <!-- Main Sidebar Container -->
   <app-sidebar></app-sidebar>
+  <!-- Main Sidebar Container -->
 
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+
+  <!-- Page Content <Body> -->
+
     <router-outlet></router-outlet>
-  </div>
+
+  <!-- Page Content <Body> -->
+
 
 
   <div>
     <app-footer></app-footer>
   </div>
-
-
-  <script>
-    $.widget.bridge('uibutton', $.ui.button)
-  </script>
 
 </div>
 

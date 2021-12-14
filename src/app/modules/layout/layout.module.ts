@@ -5,6 +5,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { FooterComponent } from './footer/footer.component';
 import {RouterModule} from "@angular/router";
 import {ZuliefererComponent} from "../../zulieferer/zulieferer.component";
+import {ContactComponent} from "../../contact/contact.component";
+import {HomeComponent} from "../../home/home.component";
 
 
 
@@ -17,7 +19,13 @@ import {ZuliefererComponent} from "../../zulieferer/zulieferer.component";
   imports: [
     CommonModule
     ,
-    RouterModule.forRoot([{path: 'zulieferer', component: ZuliefererComponent}
+    RouterModule.forRoot([
+      {path:"", component:HomeComponent},
+      {path:"home" , component:HomeComponent},
+      {path: 'zulieferer', component: ZuliefererComponent},
+      {path: 'contact', component:ContactComponent},
+
+
     ]),
 
   ],

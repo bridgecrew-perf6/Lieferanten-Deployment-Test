@@ -1,28 +1,13 @@
-<div class="content-wrapper">
-  <section class="content-header">
-    <div class="container-fluid">
-      <div class="row mb-2">
-        <div class="col-sm-6">
-          <h1>Inline Charts</h1>
-        </div>
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">Inline Charts</li>
-          </ol>
-        </div>
-      </div>
-    </div><!-- /.container-fluid -->
-  </section>
-
+<!--
+<div id="main-container">
   <section class="content">
     <div class="container-fluid">
 
       <div *ngFor="let zulieferer of zulieferer">
-        <!-- row -->
+        &lt;!&ndash; row &ndash;&gt;
         <div class="row" *ngVar="zulieferer.id as zuliefererID">
           <div class="col-12">
-            <!-- Liferant 01 -->
+            &lt;!&ndash; Liferant 01 &ndash;&gt;
             <div class="card">
               <div class="card-header">
 
@@ -41,7 +26,7 @@
                 </div>
               </div>
 
-              <!-- /.card-header -->
+              &lt;!&ndash; /.card-header &ndash;&gt;
               <div class="card-body">
 
                 <div class="row">
@@ -66,7 +51,7 @@
                         <td>{{zulieferer.description}}</td>
                         <td>
 
-                          <!-- Large modal -->
+                          &lt;!&ndash; Large modal &ndash;&gt;
                           <button type="button" class="btn btn-primary" data-toggle="modal"
                                   data-target=".bd-example-modal-lg">Large modal
                           </button>
@@ -76,10 +61,10 @@
                             <div class="modal-dialog modal-xl">
                               <div class="modal-content">
 
-                                <!--                                <div *ngVar="zulieferer.contacts as contacts">-->
-                                <!--                                <div *ngVar="contacts.get(zulieferer.id) as contactList">-->
+                                &lt;!&ndash;                                <div *ngVar="zulieferer.contacts as contacts">&ndash;&gt;
+                                &lt;!&ndash;                                <div *ngVar="contacts.get(zulieferer.id) as contactList">&ndash;&gt;
 
-                                <!--                                <div *ngVar="let zuliefererID as zulieferer.id">-->
+                                &lt;!&ndash;                                <div *ngVar="let zuliefererID as zulieferer.id">&ndash;&gt;
 
                                 <div *ngFor="let contacts of getcurrentContactlist(zuliefererID)">
                                   <table class="table">
@@ -123,7 +108,7 @@
                         <td> Migoa or EMK</td>
 
 
-                        <td> <!-- The Two Button -->
+                        <td> &lt;!&ndash; The Two Button &ndash;&gt;
                           <button (click)="onOpenModal(zulieferer, 'edit')" class="btn btn-primary"
                                   style="margin-right: 20px; ">
                             Edit <i class="fa fa-pencil-alt" style="margin-left: 10px;"></i></button>
@@ -140,39 +125,23 @@
 
                 </div>
               </div>
-              <div class="card">
-                <div class="card-header">
-                  <h3 class="card-title">Collapsible Card Example</h3>
-                  <div class="card-tools">
-                    <!-- Collapse Button -->
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                  </div>
-                  <!-- /.card-tools -->
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                  The body of the card
-                </div>
-                <!-- /.card-body -->
-              </div>
-              <!-- /.card -->
             </div>
-            <!-- /.card -->
+            &lt;!&ndash; /.card &ndash;&gt;
           </div>
-          <!-- /.col -->
+          &lt;!&ndash; /.col &ndash;&gt;
         </div>
-        <!-- /.row for first Liferant end here -->    <!-- row -->
+        &lt;!&ndash; /.row for first Liferant end here &ndash;&gt;    &lt;!&ndash; row &ndash;&gt;
       </div>
 
 
-      <!-- Main content -->
+      &lt;!&ndash; Main content &ndash;&gt;
       <div class="row">
         <div class="col-md-12">
 
           <div class="row">
             <div class="col-12">
 
-              <!--Button trigger model-->
+              &lt;!&ndash;Button trigger model&ndash;&gt;
 
               <a (click)="onOpenModal(null, 'add')" type="button" class="btn btn-info btn-lg" data-toggle="modal"
                  data-target="#myModal"
@@ -181,23 +150,23 @@
           </div>
 
 
-          <!--------------- Add Zulieferer --------------->
+          &lt;!&ndash;-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; Add Zulieferer -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;
           <div class="modal" id="addZuliefererModal">
             <div class="modal-dialog  modal-xl">
               <div class="modal-content">
 
-                <!-- Modal Header -->
+                &lt;!&ndash; Modal Header &ndash;&gt;
                 <div class="modal-header">
                   <h4 class="modal-title" id="addZuliefererModalLabel"> Add New Zulieferer</h4>
 
-                  <!-- Add Zulieferer Button -->
+                  &lt;!&ndash; Add Zulieferer Button &ndash;&gt;
 
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
 
-                <!-- Modal body -->
+                &lt;!&ndash; Modal body &ndash;&gt;
                 <div class="modal-body">
 
                   <div class="container">
@@ -212,19 +181,19 @@
                     </div>
                   </div>
 
-                  <!-- Add Form Body -->
+                  &lt;!&ndash; Add Form Body &ndash;&gt;
                   <div class="modal-body">
                     <div class="row">
 
-                      <!--  left -->
+                      &lt;!&ndash;  left &ndash;&gt;
                       <div class="col">
 
-                        <!-- Add Form -->
+                        &lt;!&ndash; Add Form &ndash;&gt;
 
                         <form #addZuliefererForm="ngForm" (ngSubmit)="onAddZulieferer(addZuliefererForm)">
                           <div class="card-body">
 
-                            <!-- title -->
+                            &lt;!&ndash; title &ndash;&gt;
                             <div class="form-group">
                               <label for="titleAdd">Title *</label>
                               <input ngModel name="title" id="titleAdd" type="text" class="form-control"
@@ -232,7 +201,7 @@
                                      required="required">
                             </div>
 
-                            <!--description-->
+                            &lt;!&ndash;description&ndash;&gt;
                             <div class="form-group">
                               <label for="descriptionAdd">Description *</label>
                               <input ngModel name="description" id="descriptionAdd" type="text" class="form-control"
@@ -240,14 +209,14 @@
                             </div>
 
 
-                            <!-- timetableId -->
+                            &lt;!&ndash; timetableId &ndash;&gt;
                             <div class="form-group">
                               <label for="timetableIdAdd">Time Table ID</label>
                               <input ngModel name="timetableId" id="timetableIdAdd" type="text" class="form-control"
                                      placeholder="Time Table ID">
                             </div>
                           </div>
-                          <!-- Submit button -->
+                          &lt;!&ndash; Submit button &ndash;&gt;
 
                           <div class="modal-footer d-flex justify-content-center ">
                             <button type="button" id="add-zulieferer-form" class="btn btn-secondary"
@@ -262,12 +231,12 @@
 
                       </div>
 
-                      <!-- Right For Contact -->
+                      &lt;!&ndash; Right For Contact &ndash;&gt;
                       <div class="col">
                         <form #addContactForm="ngForm" (ngSubmit)="onAddContact(addContactForm)">
                           <div class="card-body">
 
-                            <!-- Title -->
+                            &lt;!&ndash; Title &ndash;&gt;
                             <div class="form-group">
                               <label for="title">Title</label>
                               <select name="title" class="custom-select form-control-border" id="title">
@@ -276,56 +245,56 @@
                               </select>
                             </div>
 
-                            <!-- First Name -->
+                            &lt;!&ndash; First Name &ndash;&gt;
                             <div class="form-group">
                               <label for="vorname">First Name</label>
                               <input ngModel name="vorname" id="vorname" type="text" class="form-control"
                                      placeholder="First Name">
                             </div>
 
-                            <!-- Last Name -->
+                            &lt;!&ndash; Last Name &ndash;&gt;
                             <div class="form-group">
                               <label for="lastName">Last Name</label>
                               <input ngModel name="name" id="lastName" type="text" class="form-control"
                                      placeholder="Last Name">
                             </div>
 
-                            <!-- Email -->
+                            &lt;!&ndash; Email &ndash;&gt;
                             <div class="form-group">
                               <label for="email">Email address</label>
                               <input ngModel name="email" id="email" type="email" class="form-control"
                                      placeholder="Enter email">
                             </div>
 
-                            <!-- Company -->
+                            &lt;!&ndash; Company &ndash;&gt;
                             <div class="form-group">
                               <label for="company">Company</label>
                               <input ngModel name="company" id="company" type="text" class="form-control"
                                      placeholder="Company">
                             </div>
 
-                            <!-- Mobile -->
+                            &lt;!&ndash; Mobile &ndash;&gt;
                             <div class="form-group">
                               <label for="mobile">Mobile</label>
                               <input ngModel name="mobile" id="mobile" type="text" class="form-control"
                                      placeholder="Mobile">
                             </div>
 
-                            <!-- Telephone -->
+                            &lt;!&ndash; Telephone &ndash;&gt;
                             <div class="form-group">
                               <label for="telephone">Telephone</label>
                               <input ngModel name="telefone" id="telephone" type="text" class="form-control"
                                      placeholder="Telephone">
                             </div>
 
-                            <!-- Description -->
+                            &lt;!&ndash; Description &ndash;&gt;
                             <div class="form-group">
                               <label for="description">Description</label>
                               <input ngModel name="description" id="description" type="text" class="form-control"
                                      placeholder="Description">
                             </div>
 
-                            <!-- Anmerkung -->
+                            &lt;!&ndash; Anmerkung &ndash;&gt;
                             <div class="form-group">
                               <label for="anmerkung">Anmerkung</label>
                               <input ngModel name="anmerkung" id="anmerkung" type="text" class="form-control"
@@ -335,7 +304,7 @@
 
                           </div>
 
-                          <!-- Submit button -->
+                          &lt;!&ndash; Submit button &ndash;&gt;
 
                           <div class="modal-footer">
                             <button type="button" id="add-contact-form" class="btn btn-secondary" data-dismiss="modal">
@@ -349,7 +318,7 @@
                       </div>
 
                     </div>
-                    <!-- Body Form closed -->
+                    &lt;!&ndash; Body Form closed &ndash;&gt;
                   </div>
 
                 </div>
@@ -359,7 +328,7 @@
         </div>
       </div>
 
-      <!--------------- Edit Zulieferer --------------->
+      &lt;!&ndash;-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; Edit Zulieferer -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;
       <div class="modal fade" id="updateZuliefererModal" tabindex="-1" role="dialog"
            aria-labelledby="zuliefererEditModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -374,32 +343,32 @@
                 <input type="hidden" ngModel="{{editZulieferer?.id}}" name="id" class="form-control" id="idEdit"
                        placeholder="id">
 
-                <!-- title -->
+                &lt;!&ndash; title &ndash;&gt;
                 <div class="form-group">
                   <label for="titleEdit">Title</label>
                   <input type="text" ngModel="{{editZulieferer?.title}}" name="title" class="form-control"
                          id="titleEdit" placeholder="title">
                 </div>
 
-                <!--description-->
+                &lt;!&ndash;description&ndash;&gt;
                 <div class="form-group">
                   <label for="descriptionEdit">Description</label>
                   <input ngModel="{{editZulieferer?.description}}" name="description" id="descriptionEdit" type="text"
                          class="form-control" placeholder="description">
                 </div>
 
-                <!-- uuid -->
+                &lt;!&ndash; uuid &ndash;&gt;
 
                 <input type="hidden" ngModel="{{editZulieferer?.uuid}}" name="uuid" id="uuidEdit"
                        class="form-control">
 
-                <!-- Succeed at -->
+                &lt;!&ndash; Succeed at &ndash;&gt;
                 <div class="form-group">
                   <input type="hidden" ngModel="{{editZulieferer?.successAt}}" name="successAt" id="succeedAtEdit"
                          class="form-control">
                 </div>
 
-                <!-- timetableId -->
+                &lt;!&ndash; timetableId &ndash;&gt;
                 <div class="form-group">
                   <label for="timetableIdEdit">Time Table ID</label>
                   <input ngModel="{{editZulieferer?.timetableId}}" name="timetableId" id="timetableIdEdit" type="text"
@@ -410,10 +379,10 @@
 
                 <div class="modal-footer">
 
-                  <!-- close Button for edit Form  -->
+                  &lt;!&ndash; close Button for edit Form  &ndash;&gt;
                   <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
 
-                  <!-- save Changes Button for Edit Form -->
+                  &lt;!&ndash; save Changes Button for Edit Form &ndash;&gt;
 
                   <button (click)="onUpdateZulieferer(editForm.value)" data-dismiss="modal" class="btn btn-primary">Save
                     changes
@@ -427,7 +396,7 @@
       </div>
 
 
-      <!--------------- delete Zulieferer --------------->
+      &lt;!&ndash;-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; delete Zulieferer -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;
 
       <div class="modal fade" id="deleteZulieferereModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel"
            aria-hidden="true">
@@ -453,7 +422,7 @@
       </div>
 
 
-      <!-- Notification for no Zulieferer -->
+      &lt;!&ndash; Notification for no Zulieferer &ndash;&gt;
 
       <div *ngIf="zulieferer?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
         <div class="alert alert-info" role="alert">
@@ -461,73 +430,17 @@
           <p>No Zuliefer were found , Do you like to Add one ?</p>
 
 
-          <!--Button trigger model-->
+          &lt;!&ndash;Button trigger model&ndash;&gt;
 
           <a (click)="onOpenModal(null, 'add')" type="button" class="btn btn-info btn-lg" data-toggle="modal"
              data-target="#myModal"
              style="position: absolute; right: 50px; margin-top: 30px;"> Add </a>
         </div>
       </div>
-    </div>
+
+
+    </div>&lt;!&ndash; /.container-fluid &ndash;&gt;
   </section>
-
-  <section class="content" *ngIf="isActive;" >
-    <div class="container-fluid">
-
-      <span *ngFor="let zulieferer of zulieferer">
-        <div class="row">
-          <div class="col-12">
-            <!-- Custom Tabs -->
-            <div class="card">
-              <div class="card-header d-flex p-0">
-                <h3 class="card-title p-3">{{zulieferer.title}}</h3>
-                <ul class="nav nav-pills ml-auto p-2">
-                  <li class="nav-item"><a class="nav-link active" href="{{zulieferer.id}}" data-toggle="tab">Show ID</a></li>
-                  <li class="nav-item"><a class="nav-link" href="{{zulieferer.title}}"
-                                          data-toggle="tab">{{zulieferer.title}}</a></li>
-                  <li class="nav-item"><a class="nav-link" href="{{zulieferer.description}}" data-toggle="tab">description</a></li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
-                      Dropdown <span class="caret"></span>
-                    </a>
-                    <div class="dropdown-menu">
-                      <a class="dropdown-item" tabindex="-1" href="#">Action</a>
-                      <a class="dropdown-item" tabindex="-1" href="#">Another action</a>
-                      <a class="dropdown-item" tabindex="-1" href="#">Something else here</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" tabindex="-1" href="#">Separated link</a>
-                    </div>
-                  </li>
-                </ul>
-              </div><!-- /.card-header -->
-              <div class="card-body">
-                <div class="tab-content">
-                  <div class="tab-pane active" id="{{zulieferer.id}}">
-                    <h3>{{zulieferer.id}}</h3>
-                  </div>
-
-                  <!-- /.tab-pane -->
-                  <div class="tab-pane" id="{{zulieferer.title}}">
-                  {{zulieferer.title}}
-                  </div>
-                  <!-- /.tab-pane -->
-                  <div class="tab-pane" id="{{zulieferer.description}}">
-                  {{zulieferer.description}}
-                  </div>
-                  <!-- /.tab-pane -->
-                </div>
-                <!-- /.tab-content -->
-              </div><!-- /.card-body -->
-            </div>
-            <!-- ./card -->
-          </div>
-          <!-- /.col -->
-        </div>
-      </span>
-
-
-    </div>
-  </section>
-
 
 </div>
+-->

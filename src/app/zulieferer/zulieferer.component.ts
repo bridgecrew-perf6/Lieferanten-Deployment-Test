@@ -18,6 +18,8 @@ export class ZuliefererComponent implements OnInit {
   public deleteZulieferer: Zulieferer | undefined;
   contacts = new Map<number, Contacts[]>();
 
+  isActive = false;
+
   constructor(private zuliefererServices: ZuliefererServices) {
   }
 
@@ -135,6 +137,7 @@ export class ZuliefererComponent implements OnInit {
   }
 
   // Pass The Argument to another Component
+
   onAddContact(addContactForm: any) {
     // @ts-ignore
     this.contactComponent.on(addContactForm);
