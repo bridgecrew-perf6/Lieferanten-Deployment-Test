@@ -13,35 +13,36 @@ import {Contacts} from "../contact/contact";
 })
 
 export class ZuliefererComponent implements OnInit {
-  public zulieferer: Zulieferer[] = [];
+
+  zulieferer: Zulieferer[] = [];
   public editZulieferer: Zulieferer | undefined;
   public deleteZulieferer: Zulieferer | undefined;
   contacts = new Map<number, Contacts[]>();
 
-  isActive = false;
+  isActiveTwo = false;
+  isActiveOne = true;
 
   constructor(private zuliefererServices: ZuliefererServices) {
   }
 
   ngOnInit(): void {
     this.getZulieferer()
-    this.updateContactsList()
-    this.printmap()
+    console.log("The List Zulieferer List 2  ngOnInit() " + this.zulieferer.length);
   }
 
 
   public getZulieferer(): void {
-    this.zuliefererServices.getAll().subscribe(
-      (response: Zulieferer[]) => {
-        this.zulieferer = response;
-        this.updateContactsList()
+    this.zuliefererServices.getAll().subscribe((receivedData) => (
+      this.zulieferer = receivedData));
+    console.log("The List Zulieferer List 1 getZulieferer() " + this.zulieferer.length);
 
-      },
-    )
   }
 
-  public updateContactsList()
-  {
+  public getandSaveZulieferer(): number {
+    return 0;
+  }
+
+  public updateContactsList() {
     this.zulieferer.forEach((zulieferer) => {
         this.contacts.set(zulieferer.id, zulieferer.contacts)
       }
@@ -49,13 +50,9 @@ export class ZuliefererComponent implements OnInit {
   }
 
 
-
-
-
   public getcurrentContactlist(id: number): any {
     return this.contacts.get(id);
   }
-
 
 
   public printmap() {
@@ -64,7 +61,6 @@ export class ZuliefererComponent implements OnInit {
     });
 
   }
-
 
 
   public onAddZulieferer(addZuliefererForm: NgForm): void {

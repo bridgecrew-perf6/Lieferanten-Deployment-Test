@@ -10,6 +10,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { ContactComponent } from './contact/contact.component';
 import {VarDirective} from "./zulieferer/ng-var.directive";
 import { HomeComponent } from './home/home.component';
+import { DownloadComponent } from './download/download.component';
 
 
 
@@ -19,7 +20,8 @@ import { HomeComponent } from './home/home.component';
     ZuliefererComponent,
     ContactComponent,
     VarDirective,
-    HomeComponent
+    HomeComponent,
+    DownloadComponent
   ],
   imports: [
     AppRoutingModule,

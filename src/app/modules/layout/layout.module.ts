@@ -7,6 +7,7 @@ import {RouterModule} from "@angular/router";
 import {ZuliefererComponent} from "../../zulieferer/zulieferer.component";
 import {ContactComponent} from "../../contact/contact.component";
 import {HomeComponent} from "../../home/home.component";
+import {DownloadComponent} from "../../download/download.component";
 
 
 
@@ -24,6 +25,7 @@ import {HomeComponent} from "../../home/home.component";
       {path:"home" , component:HomeComponent},
       {path: 'zulieferer', component: ZuliefererComponent},
       {path: 'contact', component:ContactComponent},
+      {path: 'downloads' , component:DownloadComponent}
 
 
     ]),
