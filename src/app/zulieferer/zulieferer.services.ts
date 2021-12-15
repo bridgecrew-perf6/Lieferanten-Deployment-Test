@@ -3,6 +3,7 @@ import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Zulieferer} from "./zulieferer";
+import {Contacts} from "../contact/contact";
 
 @Injectable({providedIn: 'root'})
 
@@ -20,11 +21,17 @@ export class ZuliefererServices {
     return this.http.get<Zulieferer[]>(`${this.apiServerUrl}/zulieferer/all`)
   }
 
+
+
+  //Find Zulieferer By Id
+  public getZuliefererContactsById(zulieferId: number): Observable<Contacts[]> {
+    return this.http.get<Contacts[]>(`${this.apiServerUrl}/zulieferer/contacts/${zulieferId}`)
+  }
+
+
+
   // Create a new Zuliefer
   public createZulieferer(zulieferer: Zulieferer): Observable<Zulieferer> {
-    const headers ={'content-type':'application '}
-    const body = JSON.stringify(zulieferer);
-    console.log(body)
     return this.http.post<Zulieferer>(`${this.apiServerUrl}/zulieferer/add`, zulieferer)
   }
 

@@ -15,9 +15,14 @@ import {Contacts} from "../contact/contact";
 export class ZuliefererComponent implements OnInit {
 
   zulieferer: Zulieferer[] = [];
+  zuliefercontactList: Contacts[] = [];
+  showContactButton = false;
+
   public editZulieferer: Zulieferer | undefined;
   public deleteZulieferer: Zulieferer | undefined;
+  public showZuliefererContact : Zulieferer | undefined;
   contacts = new Map<number, Contacts[]>();
+
 
   isActiveTwo = false;
   isActiveOne = true;
@@ -33,10 +38,26 @@ export class ZuliefererComponent implements OnInit {
 
   public getZulieferer(): void {
     this.zuliefererServices.getAll().subscribe((receivedData) => (
-      this.zulieferer = receivedData));
-    console.log("The List Zulieferer List 1 getZulieferer() " + this.zulieferer.length);
+      this.zulieferer = receivedData)
+    );
 
+    console.log("The List Zulieferer List 1 getZulieferer() " + this.zulieferer.length);
   }
+
+  public getZuliefererContacts(zulieferer: any): void {
+
+    this.showZuliefererContact= zulieferer;
+    console.log("Zulieferer ID " +zulieferer.id)
+
+    this.zuliefererServices.getZuliefererContactsById(zulieferer.id).subscribe((receivedData) => (
+      this.zuliefercontactList = receivedData)
+    );
+    if (!this.showContactButton )
+    {
+      this.showContactButton =true
+    }
+  }
+
 
   public getandSaveZulieferer(): number {
     return 0;
@@ -56,9 +77,12 @@ export class ZuliefererComponent implements OnInit {
 
 
   public printmap() {
+
+    console.log("inside the print button" + this.contacts.size)
     this.contacts.forEach((value: Contacts[], key: number) => {
       console.log("________________________" + key, value)
     });
+
 
   }
 
@@ -123,8 +147,8 @@ export class ZuliefererComponent implements OnInit {
       this.deleteZulieferer = zulieferer;
       button.setAttribute('data-target', '#deleteZulieferereModal');
     }
-    if (mode === 'Contact') {
-      button.setAttribute('data-target', "zulieferContact")
+    if (mode === 'showContact') {
+      button.setAttribute('data-target', "#zulieferContact")
     }
 
     // @ts-ignore
@@ -133,6 +157,7 @@ export class ZuliefererComponent implements OnInit {
   }
 
   // Pass The Argument to another Component
+
 
   onAddContact(addContactForm: any) {
     // @ts-ignore
