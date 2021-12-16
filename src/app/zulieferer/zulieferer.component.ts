@@ -16,6 +16,8 @@ export class ZuliefererComponent implements OnInit {
 
   zulieferer: Zulieferer[] = [];
   zuliefercontactList: Contacts[] = [];
+
+
   showContactButton = false;
 
   public editZulieferer: Zulieferer | undefined;
@@ -47,7 +49,7 @@ export class ZuliefererComponent implements OnInit {
   public getZuliefererContacts(zulieferer: any): void {
 
     this.showZuliefererContact= zulieferer;
-    console.log("Zulieferer ID " +zulieferer.id)
+    console.log("Zulieferer ID " + zulieferer.id)
 
     this.zuliefererServices.getZuliefererContactsById(zulieferer.id).subscribe((receivedData) => (
       this.zuliefercontactList = receivedData)
