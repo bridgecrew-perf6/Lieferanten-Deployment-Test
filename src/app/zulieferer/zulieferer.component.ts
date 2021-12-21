@@ -23,6 +23,12 @@ export class ZuliefererComponent implements OnInit {
   public deleteZulieferer: Zulieferer | undefined;
   public showZuliefererContact: Zulieferer | undefined;
 
+  openContactForm = false;
+  enableZuliefererButton = false
+  activethisbutton = false
+  Kontakthinzufgen = true;
+
+
 
 
 
@@ -31,6 +37,12 @@ export class ZuliefererComponent implements OnInit {
 
   ngOnInit(): void {
     this.getZulieferer()
+  }
+
+  ContactForm() : void
+  {
+    this.openContactForm = true
+    this.Kontakthinzufgen = false;
   }
 
 
@@ -51,6 +63,14 @@ export class ZuliefererComponent implements OnInit {
         alert(error.message);
       }
     )
+    this.zuliefercontactList = []
+    this.openContactForm = false;
+    this.enableZuliefererButton = false
+    this.activethisbutton = false
+    this.Kontakthinzufgen = true;
+
+
+
   }
 
 
@@ -58,6 +78,8 @@ export class ZuliefererComponent implements OnInit {
   onAddContact(addContactForm : NgForm) : void
   {
     this.zuliefercontactList.push(addContactForm.value)
+    this.enableZuliefererButton = true
+    this.activethisbutton = true
   }
 
 
