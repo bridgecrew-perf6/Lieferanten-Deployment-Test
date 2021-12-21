@@ -11,3 +11,4 @@ export interface Zulieferer {
   timetableId: number;
   contacts : Contacts[]
 }
+

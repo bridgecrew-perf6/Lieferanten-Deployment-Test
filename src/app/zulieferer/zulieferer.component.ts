@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Zulieferer} from "./zulieferer";
-import {HttpErrorResponse} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from "@angular/common/http";
 import {ZuliefererServices} from "./zulieferer.services";
 import {NgForm} from "@angular/forms";
 import {Contacts} from "../contact/contact";
+import {ZuliefererObejct} from "./sendData";
 
 
 @Component({
@@ -15,26 +16,48 @@ import {Contacts} from "../contact/contact";
 export class ZuliefererComponent implements OnInit {
 
   zulieferer: Zulieferer[] = [];
+
   zuliefercontactList: Contacts[] = [];
-
-
-  showContactButton = false;
 
   public editZulieferer: Zulieferer | undefined;
   public deleteZulieferer: Zulieferer | undefined;
-  public showZuliefererContact : Zulieferer | undefined;
-  contacts = new Map<number, Contacts[]>();
+  public showZuliefererContact: Zulieferer | undefined;
 
 
-  isActiveTwo = false;
-  isActiveOne = true;
+
 
   constructor(private zuliefererServices: ZuliefererServices) {
   }
 
   ngOnInit(): void {
     this.getZulieferer()
-    console.log("The List Zulieferer List 2  ngOnInit() " + this.zulieferer.length);
+  }
+
+
+  onZuliefererAndContact(addZuliefererForm: NgForm): void {
+
+    addZuliefererForm.value.contacts = this.zuliefercontactList
+
+    console.log(JSON.stringify(addZuliefererForm.value.contacts))
+
+    console.log(addZuliefererForm.value)
+
+    this.zuliefererServices.createZulieferer(addZuliefererForm.value).subscribe(
+      (response:Zulieferer)=>{
+        console.log(response);
+        this.getZulieferer();
+      },
+      (error:HttpErrorResponse)=>{
+        alert(error.message);
+      }
+    )
+  }
+
+
+
+  onAddContact(addContactForm : NgForm) : void
+  {
+    this.zuliefercontactList.push(addContactForm.value)
   }
 
 
@@ -42,69 +65,18 @@ export class ZuliefererComponent implements OnInit {
     this.zuliefererServices.getAll().subscribe((receivedData) => (
       this.zulieferer = receivedData)
     );
-
-    console.log("The List Zulieferer List 1 getZulieferer() " + this.zulieferer.length);
   }
 
   public getZuliefererContacts(zulieferer: any): void {
 
-    this.showZuliefererContact= zulieferer;
+    this.showZuliefererContact = zulieferer;
     console.log("Zulieferer ID " + zulieferer.id)
 
     this.zuliefererServices.getZuliefererContactsById(zulieferer.id).subscribe((receivedData) => (
       this.zuliefercontactList = receivedData)
     );
-    if (!this.showContactButton )
-    {
-      this.showContactButton =true
-    }
   }
 
-
-  public getandSaveZulieferer(): number {
-    return 0;
-  }
-
-  public updateContactsList() {
-    this.zulieferer.forEach((zulieferer) => {
-        this.contacts.set(zulieferer.id, zulieferer.contacts)
-      }
-    )
-  }
-
-
-  public getcurrentContactlist(id: number): any {
-    return this.contacts.get(id);
-  }
-
-
-  public printmap() {
-
-    console.log("inside the print button" + this.contacts.size)
-    this.contacts.forEach((value: Contacts[], key: number) => {
-      console.log("________________________" + key, value)
-    });
-
-
-  }
-
-
-  public onAddZulieferer(addZuliefererForm: NgForm): void {
-
-    // @ts-ignore
-    document.getElementById('add-zulieferer-form').click();
-
-    //passing the Values to the Backend
-    this.zuliefererServices.createZulieferer(addZuliefererForm.value).subscribe(
-      (response: Zulieferer) => {
-        console.log(response);
-        this.getZulieferer();
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    )
-  }
 
   public onUpdateZulieferer(updateZulieferer: Zulieferer): void {
     this.zuliefererServices.updateZulieferer(updateZulieferer).subscribe(
@@ -117,6 +89,7 @@ export class ZuliefererComponent implements OnInit {
       }
     )
   }
+
 
   public onDeleteZulieferer(zulieferId: any): void {
     this.zuliefererServices.deleteZulieferer(zulieferId).subscribe(
@@ -158,12 +131,23 @@ export class ZuliefererComponent implements OnInit {
     button.click();
   }
 
-  // Pass The Argument to another Component
-
-
-  onAddContact(addContactForm: any) {
-    // @ts-ignore
-    this.contactComponent.on(addContactForm);
-  }
 
 }
+
+//
+// public onAddZulieferer(addZuliefererForm: NgForm): void {
+//
+//   // @ts-ignore
+//   document.getElementById('add-zulieferer-form').click();
+//
+//   //passing the Values to the Backend
+//   this.zuliefererServices.createZulieferer(addZuliefererForm.value).subscribe(
+//     (response: Zulieferer) => {
+//       console.log(response);
+//       this.getZulieferer();
+//     },
+//     (error: HttpErrorResponse) => {
+//       alert(error.message);
+//     }
+//   )
+// }

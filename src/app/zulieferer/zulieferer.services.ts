@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Zulieferer} from "./zulieferer";
 import {Contacts} from "../contact/contact";
+import {ZuliefererObejct} from "./sendData";
 
 @Injectable({providedIn: 'root'})
 
@@ -31,7 +32,7 @@ export class ZuliefererServices {
 
 
   // Create a new Zuliefer
-  public createZulieferer(zulieferer: Zulieferer): Observable<Zulieferer> {
+  public createZulieferer(zulieferer : Zulieferer ): Observable<Zulieferer>  {
     return this.http.post<Zulieferer>(`${this.apiServerUrl}/zulieferer/add`, zulieferer)
   }
 
