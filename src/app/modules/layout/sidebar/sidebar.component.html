@@ -26,12 +26,37 @@
              with font-awesome or any other icon font library -->
 
         <li class="nav-header">Lieferanten</li>
+
         <li class="nav-item">
-          <a routerLink="/zulieferer" routerLinkActive="true" class="nav-link">
+          <a href="#" class="nav-link">
             <i class="fas fa-circle nav-icon"></i>
-            <p>Lieferant</p>
+            <p>
+              Lieferanten
+              <i class="fas fa-angle-left right"></i>
+            </p>
           </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a routerLink="/zulieferer" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Lieferanten</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="/mioga" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Mioga</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="/emk" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>EMK</p>
+              </a>
+            </li>
+          </ul>
         </li>
+
         <li class="nav-item">
           <a  routerLink="/home" class="nav-link">
             <i class="fas fa-circle nav-icon"></i>

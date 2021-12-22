@@ -8,6 +8,9 @@ import {ZuliefererComponent} from "../../zulieferer/zulieferer.component";
 import {ContactComponent} from "../../contact/contact.component";
 import {HomeComponent} from "../../home/home.component";
 import {DownloadComponent} from "../../download/download.component";
+import {MiogaComponent} from "../../zulieferer/mioga/mioga.component";
+import {EmkComponent} from "../../zulieferer/emk/emk.component";
+import {ErrorComponent} from "../../error/error.component";
 
 
 
@@ -25,9 +28,10 @@ import {DownloadComponent} from "../../download/download.component";
       {path:"home" , component:HomeComponent},
       {path: 'zulieferer', component: ZuliefererComponent},
       {path: 'contact', component:ContactComponent},
-      {path: 'downloads' , component:DownloadComponent}
-
-
+      {path: 'downloads' , component:DownloadComponent},
+      {path: 'mioga' , component:MiogaComponent},
+      {path: 'emk' , component:EmkComponent},
+      {path: "**" , component:ErrorComponent}
     ]),
 
   ],

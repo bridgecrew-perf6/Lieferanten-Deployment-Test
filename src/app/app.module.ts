@@ -11,6 +11,8 @@ import { ContactComponent } from './contact/contact.component';
 import {VarDirective} from "./zulieferer/ng-var.directive";
 import { HomeComponent } from './home/home.component';
 import { DownloadComponent } from './download/download.component';
+import {EmkComponent} from "./zulieferer/emk/emk.component";
+import {MiogaComponent} from "./zulieferer/mioga/mioga.component";
 
 
 
@@ -21,7 +23,9 @@ import { DownloadComponent } from './download/download.component';
     ContactComponent,
     VarDirective,
     HomeComponent,
-    DownloadComponent
+    DownloadComponent,
+    EmkComponent,
+    MiogaComponent
   ],
   imports: [
     AppRoutingModule,

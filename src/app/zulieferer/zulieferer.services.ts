@@ -16,9 +16,21 @@ export class ZuliefererServices {
   }
 
 
+  //Get Mioga Zulieferer
+  public getMiogaZuLieferer(): Observable<Zulieferer[]> {
+    return this.http.get<Zulieferer[]>(`${this.apiServerUrl}zulieferer/belongs/mioga`)
+  }
+
+  //Get EML Zulieferer
+
+  public getEmkZulieferer(): Observable<Zulieferer[]> {
+    return this.http.get<Zulieferer[]>(`${this.apiServerUrl}zulieferer/belongs/emk`)
+  }
+
+
+
   //Get all Zulieferer
   public getAll(): Observable<Zulieferer[]> {
-    console.log('getZulieferer' + this.apiServerUrl + 'zulieferer')
     return this.http.get<Zulieferer[]>(`${this.apiServerUrl}/zulieferer/all`)
   }
 

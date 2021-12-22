@@ -5,6 +5,7 @@ export interface Zulieferer {
   id: number; // Liferant ID
   title: string; // Name of the Company or Name
   description: string; //
+  belongsTo : string
   uuid: string;
   updatedAt: string;
   successAt: string;
