@@ -123,34 +123,6 @@ export class MiogaComponent implements OnInit {
   }
 
 
-  public onOpenModal(zulieferer: any, mode: string): void {
-
-    const container = document.getElementById('main-container');
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.style.display = 'none';
-    button.setAttribute('data-toggle', 'modal');
-    if (mode === 'add') {
-      button.setAttribute('data-target', '#addZuliefererModal');
-    }
-    if (mode === 'edit') {
-      this.editZulieferer = zulieferer;
-      button.setAttribute('data-target', '#updateZuliefererModal');
-    }
-    if (mode === 'delete') {
-      this.deleteZulieferer = zulieferer;
-      button.setAttribute('data-target', '#deleteZulieferereModal');
-    }
-    if (mode === 'showContact') {
-      button.setAttribute('data-target', "#zulieferContact")
-    }
-
-    // @ts-ignore
-    container.appendChild(button);
-    button.click();
-  }
-
-
 
 
 }

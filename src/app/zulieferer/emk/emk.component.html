@@ -76,13 +76,7 @@
                           </td>
                           <td> {{zulieferer.belongsTo}}</td>
                           <td> <!-- The Two Button -->
-                            <button (click)="onOpenModal(zulieferer, 'edit')" class="btn btn-primary"
-                                    style="margin-right: 20px; ">
-                              Edit <i class="fa fa-pencil-alt" style="margin-left: 10px;"></i></button>
 
-
-                            <button (click)="onOpenModal(zulieferer , 'delete')" class="btn btn-danger"> delete <i
-                              class="fa fa-times" style="margin-left:10px;"></i></button>
 
                           </td>
                         </tr>
@@ -163,9 +157,7 @@
 
         <!--Button trigger model-->
 
-        <a (click)="onOpenModal(null, 'add')" type="button" class="btn btn-info btn-lg" data-toggle="modal"
-           data-target="#myModal"
-           style="position: absolute; right: 50px;"> Add </a>
+
       </div>
     </div>
 
@@ -457,12 +449,6 @@
       <div class="alert alert-info" role="alert">
         <h4 class="alert-heading">Kein Zulieferer!</h4>
 
-
-        <!--Button trigger model-->
-
-        <a (click)="onOpenModal(null, 'add')" type="button" class="btn btn-info btn-lg" data-toggle="modal"
-           data-target="#myModal"
-           style="position: absolute; right: 50px; margin-top: 30px;"> Add </a>
       </div>
     </div>
 

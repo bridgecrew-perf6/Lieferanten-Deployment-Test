@@ -1,10 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Zulieferer} from "./zulieferer";
-import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from "@angular/common/http";
+import {HttpErrorResponse} from "@angular/common/http";
 import {ZuliefererServices} from "./zulieferer.services";
-import {FormArray, FormControl, FormGroup, NgForm, Validators} from "@angular/forms";
 import {Contacts} from "../contact/contact";
-import {ZuliefererObejct} from "./sendData";
+import {FormArray, FormBuilder, Validators} from "@angular/forms";
 
 
 @Component({
@@ -16,64 +15,52 @@ import {ZuliefererObejct} from "./sendData";
 export class ZuliefererComponent implements OnInit {
 
   zulieferer: Zulieferer[] = [];
-
   zuliefercontactList: Contacts[] = [];
-
   public editZulieferer: Zulieferer | undefined;
   public deleteZulieferer: Zulieferer | undefined;
   public showZuliefererContact: Zulieferer | undefined;
-
-  openContactForm = false;
-  enableZuliefererButton = false
-  activethisbutton = false
-  Kontakthinzufgen = true;
   defaulttilte = "Ms";
-
-
-  zuliefererForm: FormGroup;
   belongsTo = "Mioga";
+  ListLengthValidator = false;
 
 
-  constructor(private zuliefererServices: ZuliefererServices) {
-    this.zuliefererForm = new FormGroup({
-      'title': new FormControl(null, Validators.required),
-      'description': new FormControl(null, [Validators.required, Validators.email]),
-      'belongsTo': new FormControl(null, Validators.required),
-      'contacts': new FormArray([])
-    })
-  }
 
-  AddContact() {
+  zuliefererForm = this.fromBuilder.group({
+    'title': ['', Validators.required],
+    'description': ['',],
+    'belongsTo': ['MIOGA', Validators.required],
+    contacts : this.fromBuilder.array([])
+  })
 
-    const contact = new FormGroup({
-      'title': new FormControl(null, Validators.required),
-      'description': new FormControl(null, Validators.required),
-      'company': new FormControl(null, Validators.required),
-      'vorname': new FormControl(null, Validators.required),
-      'name': new FormControl(null, Validators.required),
-      'mobile': new FormControl(null, Validators.required),
-      'email': new FormControl(null, [Validators.required, Validators.email]),
-      'anmerkung': new FormControl(null)
-    });
-    (<FormArray>this.zuliefererForm.get('contacts')).push(contact);
-    this.zuliefererForm.get('contacts')
-  }
 
-  getControls() {
-    return (<FormArray>this.zuliefererForm.get('contacts')).controls;
-  }
+  constructor(private zuliefererServices: ZuliefererServices , private fromBuilder : FormBuilder ) {}
 
-  get contacts()
-  {
+
+  get contacts(){
     return this.zuliefererForm.controls["contacts"] as FormArray
   }
 
 
+  AddContact() {
+    const contactForm = this.fromBuilder.group({
+      'title': ['Ms' , Validators.required],
+      'description':[''],
+      'company': ['', Validators.required],
+      'vorname':  [''],
+      'name':  ['', Validators.required],
+      'telefone':  ['', ],
+      'mobile':  [''],
+      'email': ['', Validators.required , Validators.email],
+      'anmerkung':  ['']
 
-  onAddzulieferer():void
-  {
-    console.log(JSON.stringify(this.zuliefererForm.value));
+    })
+    this.contacts.push(contactForm);
+  }
+  deleteContact(ContactFromIndex : number) {
+    this.contacts.removeAt(ContactFromIndex)
+  }
 
+  onAddzulieferer(): void {
     this.zuliefererServices.createZulieferer(this.zuliefererForm.value).subscribe(
       (response: Zulieferer) => {
         console.log(response);
@@ -90,49 +77,6 @@ export class ZuliefererComponent implements OnInit {
   ngOnInit(): void {
     this.getZulieferer()
   }
-
-  ContactForm(): void {
-    this.openContactForm = true
-    this.Kontakthinzufgen = false;
-  }
-
-
-
-
-/*
-  onZuliefererAndContact(addZuliefererForm: NgForm): void {
-
-    addZuliefererForm.value.contacts = this.zuliefercontactList
-
-    console.log(JSON.stringify(addZuliefererForm.value.contacts))
-
-    console.log(addZuliefererForm.value)
-
-    this.zuliefererServices.createZulieferer(addZuliefererForm.value).subscribe(
-      (response: Zulieferer) => {
-        console.log(response);
-        this.getZulieferer();
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    )
-    this.zuliefercontactList = []
-    this.openContactForm = false;
-    this.enableZuliefererButton = false
-    this.activethisbutton = false
-    this.Kontakthinzufgen = true;
-
-
-  }
-
-
-  onAddContact(addContactForm: NgForm): void {
-    this.zuliefercontactList.push(addContactForm.value)
-    this.enableZuliefererButton = true
-    this.activethisbutton = true
-  }
-*/
 
 
   public getZulieferer(): void {
@@ -176,7 +120,6 @@ export class ZuliefererComponent implements OnInit {
       }
     );
   }
-
 
   public onOpenModal(zulieferer: any, mode: string): void {
 
