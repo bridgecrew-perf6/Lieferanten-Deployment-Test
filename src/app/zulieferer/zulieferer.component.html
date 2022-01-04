@@ -199,161 +199,109 @@
 
               <!-- Add Zulieferer Form -->
 
-              <form #addZuliefererForm="ngForm" (ngSubmit)="onZuliefererAndContact(addZuliefererForm)">
-                <div class="card-body">
+              <form [formGroup]="zuliefererForm" (ngSubmit)="onAddzulieferer()">
 
-                  <!-- title -->
-                  <div class="form-group">
-                    <label for="titleAdd">Title *</label>
-                    <input ngModel name="title" id="titleAdd" type="text" class="form-control"
-                           placeholder="title"
-                           required="required"
-                            #title="ngModel">
-                  </div>
-                  <span class="help-block" *ngIf="title.invalid && title.touched" > Bitte geben Sie einen gültigen Titel für Zulieferer ein  </span>
-
-                  <!--description-->
-                  <div class="form-group">
-                    <label for="descriptionAdd">Description *</label>
-                    <input ngModel name="description" id="descriptionAdd" type="text"
-                           class="form-control"
-                           placeholder="description" required="required">
-                  </div>
-
-                  <!-- Belongs To -->
-                  <div class="form-group">
-                    <label for="title">Gehört Zu * </label>
-                    <select class="form-control" ngModel name="belongsTo" id="belongsTo" placeholder="Mioga"
-                            required="required">
-                      <option>MIOGA</option>
-                      <option>EMK</option>
-                    </select>
-                  </div>
-
-
-                  <!-- timetableId -->
-                  <div class="form-group">
-                    <label for="timetableIdAdd">Time Table ID</label>
-                    <input ngModel name="timetableId" id="timetableIdAdd" type="number"
-                           class="form-control"
-                           placeholder="Time Table ID <Optional> ">
-                  </div>
-                  <input ngModel name="contacts" id="contactsAdd" type="hidden" class="form-control">
-                  <div>
-
-                  </div>
+                <div class="form-group">
+                  <label for="titleAdd">Title *</label>
+                  <input
+                    type="text"
+                    id="titleAdd"
+                    formControlName="title"
+                    class="form-control">
                 </div>
 
-              </form>
-
-              <button *ngIf="Kontakthinzufgen" type="button" class="btn btn-success" (click)="ContactForm()"> Kontakt
-                hinzufügen
-              </button>
-
-
-              <ng-container *ngIf="openContactForm">
-
-
-                <div class="row">
-                  <div class="col">
-                    <h5 class="modal-title">Contact Daten</h5>
-                  </div>
+                <div class="form-group">
+                  <label for="description">description</label>
+                  <input
+                    type="text"
+                    id="description"
+                    formControlName="description"
+                    class="form-control">
                 </div>
-                <form #addContactForm="ngForm" (ngSubmit)="onAddContact(addContactForm)">
 
-                  <div class="container">
+                <!-- Belongs To -->
+                <div class="form-group">
+                  <label for="belongsTo"> Gehört Zu * </label>
+                  <select class="form-control"
+                          formControlName="belongsTo"
+                          id="belongsTo">
+                    <option class="form-control" >MIOGA</option>
+                    <option class="form-control" >  EMK</option>
+                  </select>
+                </div>
 
+                <div formArrayName="contacts">
+                  <h4>Your Contact</h4>
+                  <div class="form-group" *ngFor=" let contact of getControls(); let i = index">
 
-                    <div class="card-body">
-
-                      <!-- Title -->
-                      <div class="form-group">
-                        <label for="title">Title</label>
-                        <select class="form-control" [ngModel]="defaulttilte" name="title" id="title" placeholder="Ms <Optional>">
-                          <option>Ms</option>
-                          <option>Mr</option>
-                        </select>
-                      </div>
-
-
-                      <!-- First Name -->
-                      <div class="form-group">
-                        <label for="vorname">First Name</label>
-                        <input ngModel name="vorname" id="vorname" type="text" class="form-control"
-                               placeholder="First Name <Optional> ">
-                      </div>
-
-                      <!-- Last Name -->
-                      <div class="form-group">
-                        <label for="lastName">Last Name * </label>
-                        <input ngModel name="name" id="lastName" type="text" class="form-control"
-                               placeholder="Last Name" required="required">
-                      </div>
-
-                      <!-- Email -->
-                      <div class="form-group">
-                        <label for="email">Email Address *</label>
-                        <input ngModel name="email" id="email" type="email" class="form-control"
-                               placeholder="Enter email" required="required">
-                      </div>
-
-                      <!-- Company -->
-                      <div class="form-group">
-                        <label for="company">Company</label>
-                        <input ngModel name="company" id="company" type="text" class="form-control"
-                               placeholder="Company <Optional> ">
-                      </div>
-
-                      <!-- Mobile -->
-                      <div class="form-group">
-                        <label for="mobile">Mobile</label>
-                        <input ngModel name="mobile" id="mobile" type="text" class="form-control" placeholder="Mobile <Optional>">
-                      </div>
-
-                      <!-- Telephone -->
-                      <div class="form-group">
-                        <label for="telephone">Telephone</label>
-                        <input ngModel name="telefone" id="telephone" type="text" class="form-control"
-                               placeholder="Telephone <Optional> ">
-                      </div>
-
-                      <!-- Description -->
-                      <div class="form-group">
-                        <label for="description">Description</label>
-                        <input ngModel name="description" id="description" type="text" class="form-control"
-                               placeholder="Description <Optional> ">
-                      </div>
-
-                      <!-- Anmerkung -->
-                      <div class="form-group">
-                        <label for="anmerkung">Anmerkung</label>
-                        <input ngModel name="anmerkung" id="anmerkung" type="text" class="form-control"
-                               placeholder="Anmerkung <Optional> ">
-                      </div>
+                    <!-- Title -->
+                    <div class="form-group">
+                      <label>Title</label>
+                      <select name="title"  class="form-control">
+                        <option class="form-control" >Ms</option>
+                        <option class="form-control" >Mr</option>
+                      </select>
                     </div>
 
-                    <p> Zu Erst Contact hinzufügen und dann Lieferant spechern</p>
-                    <p>Achtung Jeder Submit click fügt eine neue kontakt hin (BUG) </p>
+                    <!-- First Name -->
+                    <div class="form-group">
+                      <label> First Name</label>
+                      <input formControlName="i.contact.vorname" type="text" class="form-control" placeholder="First Name">
+                    </div>
 
-                    <!-- Submit button -->
+                    <!-- Last Name -->
+                    <div class="form-group">
+                      <label> Last Name</label>
+                      <input name="name" type="text" class="form-control" placeholder="Last Name">
+                    </div>
 
-                    <button type="submit" class="btn btn-primary"> Contact Speicher</button>
+                    <!-- Email -->
+                    <div class="form-group">
+                      <label> Email address</label>
+                      <input name="email" type="email" class="form-control" placeholder="Enter email">
+                    </div>
+
+                    <!-- Company -->
+                    <div class="form-group">
+                      <label> Company</label>
+                      <input name="company" type="text" class="form-control"
+                             placeholder="Company">
+                    </div>
+
+                    <!-- Mobile -->
+                    <div class="form-group">
+                      <label> Mobile</label>
+                      <input name="mobile" type="text" class="form-control" placeholder="Mobile">
+                    </div>
+
+                    <!-- Telephone -->
+                    <div class="form-group">
+                      <label>Telephone</label>
+                      <input name="telefone" type="text" class="form-control"
+                             placeholder="Telephone">
+                    </div>
+
+                    <!-- Description -->
+                    <div class="form-group">
+                      <label>Description</label>
+                      <input name="description" type="text" class="form-control"
+                             placeholder="Description">
+                    </div>
+
+                    <!-- Anmerkung -->
+                    <div class="form-group">
+                      <label>Anmerkung</label>
+                      <input name="anmerkung" type="text" class="form-control"
+                             placeholder="Anmerkung">
+                    </div>
+
                   </div>
-                </form>
+                  <button class="btn btn-primary" type="button" (click)="AddContact()"> Add Contact</button>
+                </div>
 
-              </ng-container>
 
-
-            </div>
-          </div>
-
-          <div class="modal-footer">
-
-            <button (click)="onZuliefererAndContact(addZuliefererForm)" *ngIf="activethisbutton"
-                    [disabled]="addZuliefererForm.invalid" type="submit"
-                    class="btn btn-primary" id="submitbutton">
-              Zulieferer Speicher
-            </button>
+                <button class="btn btn-primary" type="submit">Submit</button>
+              </form>
 
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
@@ -397,7 +345,7 @@
 
               <!-- belongs TO -->
               <div class="form-group">
-                <label for="belongsTo">BelongsTO *</label>
+                <label for="belongsToEdit">BelongsTO *</label>
                 <select name="belongsTo" ngModel="{{editZulieferer?.belongsTo}}"
                         class="custom-select form-control-border"
                         id="belongsToEdit" required="required">
@@ -497,3 +445,4 @@
 
 
 
+</div>

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Zulieferer} from "./zulieferer";
 import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from "@angular/common/http";
 import {ZuliefererServices} from "./zulieferer.services";
-import {NgForm} from "@angular/forms";
+import {FormArray, FormControl, FormGroup, NgForm, Validators} from "@angular/forms";
 import {Contacts} from "../contact/contact";
 import {ZuliefererObejct} from "./sendData";
 
@@ -27,25 +27,79 @@ export class ZuliefererComponent implements OnInit {
   enableZuliefererButton = false
   activethisbutton = false
   Kontakthinzufgen = true;
+  defaulttilte = "Ms";
 
 
-
+  zuliefererForm: FormGroup;
+  belongsTo = "Mioga";
 
 
   constructor(private zuliefererServices: ZuliefererServices) {
+    this.zuliefererForm = new FormGroup({
+      'title': new FormControl(null, Validators.required),
+      'description': new FormControl(null, [Validators.required, Validators.email]),
+      'belongsTo': new FormControl(null, Validators.required),
+      'contacts': new FormArray([])
+    })
   }
+
+  AddContact() {
+
+    const contact = new FormGroup({
+      'title': new FormControl(null, Validators.required),
+      'description': new FormControl(null, Validators.required),
+      'company': new FormControl(null, Validators.required),
+      'vorname': new FormControl(null, Validators.required),
+      'name': new FormControl(null, Validators.required),
+      'mobile': new FormControl(null, Validators.required),
+      'email': new FormControl(null, [Validators.required, Validators.email]),
+      'anmerkung': new FormControl(null)
+    });
+    (<FormArray>this.zuliefererForm.get('contacts')).push(contact);
+    this.zuliefererForm.get('contacts')
+  }
+
+  getControls() {
+    return (<FormArray>this.zuliefererForm.get('contacts')).controls;
+  }
+
+  get contacts()
+  {
+    return this.zuliefererForm.controls["contacts"] as FormArray
+  }
+
+
+
+  onAddzulieferer():void
+  {
+    console.log(JSON.stringify(this.zuliefererForm.value));
+
+    this.zuliefererServices.createZulieferer(this.zuliefererForm.value).subscribe(
+      (response: Zulieferer) => {
+        console.log(response);
+        this.getZulieferer();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
+  }
+
+
 
   ngOnInit(): void {
     this.getZulieferer()
   }
 
-  ContactForm() : void
-  {
+  ContactForm(): void {
     this.openContactForm = true
     this.Kontakthinzufgen = false;
   }
 
 
+
+
+/*
   onZuliefererAndContact(addZuliefererForm: NgForm): void {
 
     addZuliefererForm.value.contacts = this.zuliefercontactList
@@ -55,11 +109,11 @@ export class ZuliefererComponent implements OnInit {
     console.log(addZuliefererForm.value)
 
     this.zuliefererServices.createZulieferer(addZuliefererForm.value).subscribe(
-      (response:Zulieferer)=>{
+      (response: Zulieferer) => {
         console.log(response);
         this.getZulieferer();
       },
-      (error:HttpErrorResponse)=>{
+      (error: HttpErrorResponse) => {
         alert(error.message);
       }
     )
@@ -70,17 +124,15 @@ export class ZuliefererComponent implements OnInit {
     this.Kontakthinzufgen = true;
 
 
-
   }
 
 
-
-  onAddContact(addContactForm : NgForm) : void
-  {
+  onAddContact(addContactForm: NgForm): void {
     this.zuliefercontactList.push(addContactForm.value)
     this.enableZuliefererButton = true
     this.activethisbutton = true
   }
+*/
 
 
   public getZulieferer(): void {
@@ -155,21 +207,3 @@ export class ZuliefererComponent implements OnInit {
 
 
 }
-
-//
-// public onAddZulieferer(addZuliefererForm: NgForm): void {
-//
-//   // @ts-ignore
-//   document.getElementById('add-zulieferer-form').click();
-//
-//   //passing the Values to the Backend
-//   this.zuliefererServices.createZulieferer(addZuliefererForm.value).subscribe(
-//     (response: Zulieferer) => {
-//       console.log(response);
-//       this.getZulieferer();
-//     },
-//     (error: HttpErrorResponse) => {
-//       alert(error.message);
-//     }
-//   )
-// }
