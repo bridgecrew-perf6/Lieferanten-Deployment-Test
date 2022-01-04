@@ -5,7 +5,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {LayoutModule} from "./modules/layout/layout.module";
 import {ZuliefererComponent} from './zulieferer/zulieferer.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { ContactComponent } from './contact/contact.component';
 import {VarDirective} from "./zulieferer/ng-var.directive";
@@ -32,7 +32,8 @@ import {MiogaComponent} from "./zulieferer/mioga/mioga.component";
     BrowserModule,
     LayoutModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
     ],
   providers: [],
   bootstrap: [AppComponent]

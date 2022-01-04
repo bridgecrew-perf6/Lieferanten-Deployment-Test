@@ -207,8 +207,10 @@
                     <label for="titleAdd">Title *</label>
                     <input ngModel name="title" id="titleAdd" type="text" class="form-control"
                            placeholder="title"
-                           required="required">
+                           required="required"
+                            #title="ngModel">
                   </div>
+                  <span class="help-block" *ngIf="title.invalid && title.touched" > Bitte geben Sie einen gültigen Titel für Zulieferer ein  </span>
 
                   <!--description-->
                   <div class="form-group">
@@ -267,12 +269,11 @@
                       <!-- Title -->
                       <div class="form-group">
                         <label for="title">Title</label>
-                        <select class="form-control" ngModel name="title" id="title" placeholder="Ms <Optional>">
+                        <select class="form-control" [ngModel]="defaulttilte" name="title" id="title" placeholder="Ms <Optional>">
                           <option>Ms</option>
                           <option>Mr</option>
                         </select>
                       </div>
-
 
 
                       <!-- First Name -->
