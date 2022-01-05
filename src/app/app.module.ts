@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { DownloadComponent } from './download/download.component';
 import {EmkComponent} from "./zulieferer/emk/emk.component";
 import {MiogaComponent} from "./zulieferer/mioga/mioga.component";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -33,7 +34,8 @@ import {MiogaComponent} from "./zulieferer/mioga/mioga.component";
     LayoutModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
     ],
   providers: [],
   bootstrap: [AppComponent]

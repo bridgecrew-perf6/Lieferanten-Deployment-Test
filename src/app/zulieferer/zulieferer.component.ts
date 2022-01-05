@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Zulieferer} from "./zulieferer";
 import {HttpErrorResponse} from "@angular/common/http";
 import {ZuliefererServices} from "./zulieferer.services";
 import {Contacts} from "../contact/contact";
 import {FormArray, FormBuilder, Validators} from "@angular/forms";
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -21,7 +22,9 @@ export class ZuliefererComponent implements OnInit {
   public showZuliefererContact: Zulieferer | undefined;
   defaulttilte = "Ms";
   belongsTo = "Mioga";
-  ListLengthValidator = false;
+  control = false;
+
+
 
 
 
@@ -33,11 +36,18 @@ export class ZuliefererComponent implements OnInit {
   })
 
 
-  constructor(private zuliefererServices: ZuliefererServices , private fromBuilder : FormBuilder ) {}
+  constructor(private zuliefererServices: ZuliefererServices , private fromBuilder : FormBuilder , private modalService: NgbModal
+  ) {}
 
 
   get contacts(){
     return this.zuliefererForm.controls["contacts"] as FormArray
+  }
+
+
+
+  get contactLenth(){
+    return this.contacts.length
   }
 
 
@@ -70,6 +80,8 @@ export class ZuliefererComponent implements OnInit {
         alert(error.message);
       }
     )
+    console.log(this.control)
+
   }
 
 
@@ -127,6 +139,7 @@ export class ZuliefererComponent implements OnInit {
     const button = document.createElement('button');
     button.type = 'button';
     button.style.display = 'none';
+
     button.setAttribute('data-toggle', 'modal');
     if (mode === 'add') {
       button.setAttribute('data-target', '#addZuliefererModal');
@@ -142,6 +155,7 @@ export class ZuliefererComponent implements OnInit {
     if (mode === 'showContact') {
       button.setAttribute('data-target', "#zulieferContact")
     }
+
 
     // @ts-ignore
     container.appendChild(button);
