@@ -46,6 +46,7 @@ export class ZuliefererComponent implements OnInit {
 
 
 
+
   get contactLenth(){
     return this.contacts.length
   }
@@ -81,6 +82,8 @@ export class ZuliefererComponent implements OnInit {
       }
     )
     console.log(this.control)
+
+    this.zuliefererForm.reset()
 
   }
 

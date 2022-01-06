@@ -189,7 +189,7 @@
           </div>
 
 
-          <form [formGroup]="zuliefererForm" (ngSubmit)="onAddzulieferer()">
+          <form [formGroup]="zuliefererForm" >
             <!-- Modal body -->
             <div class="modal-body">
 
@@ -331,7 +331,7 @@
             <div class="modal-footer">
               <button id="close" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               <ng-container *ngIf=" contactLenth > 0">
-                <button [disabled]="zuliefererForm.invalid "  class="btn btn-primary" type="submit" >
+                <button [disabled]="zuliefererForm.invalid "  class="btn btn-primary" (click)="onAddzulieferer()">
                   Speicher
                 </button>
               </ng-container>
