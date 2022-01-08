@@ -17,9 +17,9 @@ export class ZuliefererComponent implements OnInit {
 
   zulieferer: Zulieferer[] = [];
   zuliefercontactList: Contacts[] = [];
-  public editZulieferer: Zulieferer | undefined;
-  public deleteZulieferer: Zulieferer | undefined;
-  public showZuliefererContact: Zulieferer | undefined;
+  public editZulieferer: Zulieferer;
+  public deleteZulieferer: Zulieferer;
+  public showZuliefererContact: Zulieferer;
   defaulttilte = "Ms";
   belongsTo = "Mioga";
   control = false;
