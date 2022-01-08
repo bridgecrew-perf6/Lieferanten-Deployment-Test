@@ -33,7 +33,15 @@ export class ContactComponent implements OnInit {
 
 
   open(contact : any) {
-    this.modalService.open(contact, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.modalService.open(contact, {ariaLabelledBy: 'addModelForm'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  openEditForm(contact : any) {
+    this.modalService.open(contact, {ariaLabelledBy: 'editModelForm'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;

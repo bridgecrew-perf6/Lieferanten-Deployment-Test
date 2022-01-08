@@ -48,16 +48,14 @@
       <td>{{contact.successAt}}</td>
       <td>
         <!-- The Two Button -->
-        <button class="btn btn-primary" style="margin-right: 20px; ">
-          Edit <i class="fa fa-pencil-alt" style="margin-left: 10px;"></i></button>
+        <button class="btn btn-primary" (click)="onEditContact(contact)" style="margin-right: 20px; "> Edit <i class="fa fa-pencil-alt" style="margin-left: 10px;"></i></button>
 
-        <button class="btn btn-danger"> delete <i
-          class="fa fa-times" style="margin-left:10px;"></i></button>
-
+        <button class="btn btn-danger" (click)="onDeleteContact(contact.id)"> delete <i class="fa fa-times" style="margin-left:10px;"></i></button>
       </td>
     </tr>
     </tbody>
   </table>
+
 
 
 </div>

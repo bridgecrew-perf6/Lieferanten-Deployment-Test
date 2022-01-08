@@ -9,16 +9,25 @@ import {ContactComponent} from "../contact.component";
   templateUrl: './contacts-content.component.html',
   styleUrls: ['./contacts-content.component.scss']
 })
-export class ContactsContentComponent implements OnInit  {
+export class ContactsContentComponent implements OnInit {
 
   @Input()
   public contactsList: Contacts[] | undefined;
 
 
-
-  constructor() { }
+  constructor(private contactService: ContactServices, private parent: ContactComponent) {
+  }
 
   ngOnInit(): void {
+  }
+
+
+  onDeleteContact(contactId: any) {
+    this.parent.onDeleteContact(contactId)
+  }
+
+  onEditContact(contact: any) {
+    this.parent.openEditForm(contact)
   }
 
 
