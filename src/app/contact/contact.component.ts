@@ -8,7 +8,7 @@ import {NgbModal, ModalDismissReasons} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-contact',
-  templateUrl: './contactUpgrade.html',
+  templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent implements OnInit {
@@ -18,8 +18,7 @@ export class ContactComponent implements OnInit {
 
   public contacts: Contacts[] | undefined;
 
-  public editContact: Contacts | undefined;
-  public deleteContact: Contacts | undefined;
+
   Contactdefaultvalue = 'Ms';
   contactName = '';
 
@@ -31,23 +30,13 @@ export class ContactComponent implements OnInit {
     this.getContacts();
   }
 
-
-  open(contact : any) {
+  openAddForm(contact : any) {
     this.modalService.open(contact, {ariaLabelledBy: 'addModelForm'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
-
-  openEditForm(contact : any) {
-    this.modalService.open(contact, {ariaLabelledBy: 'editModelForm'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
-
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
@@ -58,7 +47,6 @@ export class ContactComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
-
 
   public getContacts(): void {
     this.contactService.getAll().subscribe(
@@ -108,29 +96,6 @@ export class ContactComponent implements OnInit {
         alert(error.message);
       }
     );
-  }
-
-  public onOpenModal(contact: any, mode: string): void {
-    const container = document.getElementById('main-container');
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.style.display = 'none';
-    button.setAttribute('data-toggle', 'modal');
-    if (mode === 'add') {
-      button.setAttribute('data-target', '#addContactModal');
-    }
-    if (mode === 'edit') {
-      this.editContact = contact;
-      button.setAttribute('data-target', '#updateContactModal');
-    }
-    if (mode === 'delete') {
-      this.deleteContact = contact;
-      button.setAttribute('data-target', '#deleteContactModal');
-    }
-
-    // @ts-ignore
-    container.appendChild(button);
-    button.click();
   }
 
 }

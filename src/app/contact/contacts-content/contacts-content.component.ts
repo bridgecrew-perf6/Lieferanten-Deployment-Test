@@ -13,14 +13,11 @@ export class ContactsContentComponent implements OnInit {
 
   @Input()
   public contactsList: Contacts[] | undefined;
-
-  public editContact : Contacts | undefined;
-
-
-
+  public editContact: Contacts | undefined;
+  Contactdefaultvalue = 'Ms';
   closeResult = '';
 
-  constructor(private contactService: ContactServices, private parent: ContactComponent , private modalService: NgbModal) {
+  constructor(private contactService: ContactServices, private parent: ContactComponent, private modalService: NgbModal) {
   }
 
   ngOnInit(): void {
@@ -31,11 +28,9 @@ export class ContactsContentComponent implements OnInit {
     this.parent.onDeleteContact(contactId)
   }
 
-  onSubmitUpdateContact(updateContacted: Contacts)
-  {
+  onSubmitUpdateContact(updateContacted: Contacts) {
     this.parent.onUpdateContact(updateContacted)
   }
-
 
 
   private getDismissReason(reason: any): string {
@@ -50,7 +45,7 @@ export class ContactsContentComponent implements OnInit {
 
 
   //open the Form
-  openEditForm(contactEditForm: any , Currentcontact : any ) {
+  openEditForm(contactEditForm: any, Currentcontact: any) {
     this.editContact = Currentcontact;
     this.modalService.open(contactEditForm, {ariaLabelledBy: 'editModelForm'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;

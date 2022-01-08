@@ -23,10 +23,10 @@
       <th>Vorname</th>
       <th>Name</th>
       <th>Email</th>
-      <th>Company</th>
+      <th>Firma</th>
       <th>Mobile</th>
       <th>Telefone</th>
-      <th>Description</th>
+      <th>Beschreibung</th>
       <th>Anmerkung</th>
       <th>Updated at</th>
       <th>Succeed at</th>
@@ -74,18 +74,18 @@
     </div>
     <div class="modal-body">
 
-      <form #editForm="ngForm">
+      <form #editForm="ngForm" class="form">
 
         <input type="hidden" ngModel="{{editContact?.id}}" name="id" class="form-control" id="idEdit"
                placeholder="id">
 
-        <!-- Title -->
         <div class="form-group">
-          <label for="titleEdit">Title *</label>
-          <select name="title" ngModel="{{editContact?.title}}" class="custom-select form-control-border"
-                  id="titleEdit">
+          <label for="title">Title</label>
+          <select ngModel="{{editContact?.title}}" name="title" class="custom-select form-control-border"
+                  id="title"
+                  placeholder="Mr" required>
+            <option>Ms</option>
             <option>Mr</option>
-            <option>Mrs</option>
           </select>
         </div>
 
