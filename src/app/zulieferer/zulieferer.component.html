@@ -186,7 +186,7 @@
           </div>
 
 
-          <form [formGroup]="zuliefererForm" >
+          <form [formGroup]="zuliefererForm">
             <!-- Modal body -->
             <div class="modal-body">
 
@@ -328,7 +328,7 @@
             <div class="modal-footer">
               <button id="close" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               <ng-container *ngIf=" contactLenth > 0">
-                <button [disabled]="zuliefererForm.invalid "  class="btn btn-primary" (click)="onAddzulieferer()">
+                <button [disabled]="zuliefererForm.invalid " class="btn btn-primary" (click)="onAddzulieferer()">
                   Speicher
                 </button>
               </ng-container>
@@ -436,7 +436,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <p>Are you sure you want to delete Contact {{deleteZulieferer?.id}}?</p>
+            <p> möchten Sie  {{deleteZulieferer?.title}} entfernen ?</p>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
               <button (click)="onDeleteZulieferer(deleteZulieferer?.id)" class="btn btn-danger"
