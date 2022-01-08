@@ -14,6 +14,7 @@ import { DownloadComponent } from './download/download.component';
 import {EmkComponent} from "./zulieferer/emk/emk.component";
 import {MiogaComponent} from "./zulieferer/mioga/mioga.component";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ContactsContentComponent } from './contact/contacts-content/contacts-content.component';
 
 
 
@@ -26,7 +27,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HomeComponent,
     DownloadComponent,
     EmkComponent,
-    MiogaComponent
+    MiogaComponent,
+    ContactsContentComponent
   ],
   imports: [
     AppRoutingModule,

@@ -1,28 +1,56 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit, Output} from '@angular/core';
 import {ContactServices} from "./contact.services";
 import {Contacts} from "./contact";
 import {HttpErrorResponse} from "@angular/common/http";
 import {NgForm} from "@angular/forms";
+import {NgbModal, ModalDismissReasons} from "@ng-bootstrap/ng-bootstrap";
+
 
 @Component({
   selector: 'app-contact',
-  templateUrl: './contact.component.html',
+  templateUrl: './contactUpgrade.html',
   styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent implements OnInit {
 
+  closeResult = '';
+
 
   public contacts: Contacts[] | undefined;
+
   public editContact: Contacts | undefined;
   public deleteContact: Contacts | undefined;
+  Contactdefaultvalue = 'Ms';
+  contactName = '';
 
 
-  constructor(private contactService: ContactServices) {
+  constructor(private contactService: ContactServices, private modalService: NgbModal) {
   }
 
   ngOnInit(): void {
     this.getContacts();
   }
+
+
+  open(contact : any) {
+    this.modalService.open(contact, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
+
 
   public getContacts(): void {
     this.contactService.getAll().subscribe(
@@ -35,13 +63,13 @@ export class ContactComponent implements OnInit {
     )
   }
 
-  public onAddContact(addContactForm:NgForm):void{
+  public onAddContact(addContactForm: NgForm): void {
     this.contactService.createContact(addContactForm.value).subscribe(
-      (response:Contacts)=>{
+      (response: Contacts) => {
         console.log(response);
         this.getContacts();
       },
-      (error:HttpErrorResponse)=>{
+      (error: HttpErrorResponse) => {
         alert(error.message);
       }
     )
@@ -61,9 +89,9 @@ export class ContactComponent implements OnInit {
     )
   }
 
-  public onDeleteContact (contactId: any): void {
+  public onDeleteContact(contactId: any): void {
 
-    this.contactService.deleteContact(contactId ).subscribe(
+    this.contactService.deleteContact(contactId).subscribe(
       (response: void) => {
         console.log(response);
         this.getContacts();

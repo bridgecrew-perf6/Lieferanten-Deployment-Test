@@ -1,0 +1,66 @@
+<div class="card-header">
+  <h3 class="card-title">kontakte Hover Table </h3>
+
+  <div class="card-tools">
+    <div class="input-group input-group-sm" style="width: 150px;">
+      <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+      <div class="input-group-append">
+        <button type="submit" class="btn btn-default">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- /.card-header -->
+<div class="card-body table-responsive p-0">
+  <table class="table table-hover text-nowrap">
+    <thead>
+    <tr>
+      <th>Title</th>
+      <th>Vorname</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Company</th>
+      <th>Mobile</th>
+      <th>Telefone</th>
+      <th>Description</th>
+      <th>Anmerkung</th>
+      <th>Updated at</th>
+      <th>Succeed at</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let contact of contactsList">
+      <td>{{contact.title}}</td>
+      <td>{{contact.vorname}}</td>
+      <td>{{contact.name}}</td>
+      <td>{{contact.email}}</td>
+      <td>{{contact.company}}</td>
+      <td>{{contact.mobile}}</td>
+      <td>{{contact.telefone}}</td>
+      <td>{{contact.description}}</td>
+      <td>{{contact.anmerkung}}</td>
+      <td>{{contact.updatedAt}}</td>
+      <td>{{contact.successAt}}</td>
+      <td>
+        <!-- The Two Button -->
+        <button class="btn btn-primary" style="margin-right: 20px; ">
+          Edit <i class="fa fa-pencil-alt" style="margin-left: 10px;"></i></button>
+
+        <button class="btn btn-danger"> delete <i
+          class="fa fa-times" style="margin-left:10px;"></i></button>
+
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+
+</div>
+<!-- /.card-body -->
+
+
