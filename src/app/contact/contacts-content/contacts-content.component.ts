@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Contacts} from "../contact";
-import {HttpErrorResponse} from "@angular/common/http";
 import {ContactServices} from "../contact.services";
 import {ContactComponent} from "../contact.component";
+import {ModalDismissReasons, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-contacts-content',
@@ -14,8 +14,13 @@ export class ContactsContentComponent implements OnInit {
   @Input()
   public contactsList: Contacts[] | undefined;
 
+  public editContact : Contacts | undefined;
 
-  constructor(private contactService: ContactServices, private parent: ContactComponent) {
+
+
+  closeResult = '';
+
+  constructor(private contactService: ContactServices, private parent: ContactComponent , private modalService: NgbModal) {
   }
 
   ngOnInit(): void {
@@ -26,10 +31,33 @@ export class ContactsContentComponent implements OnInit {
     this.parent.onDeleteContact(contactId)
   }
 
-  onEditContact(contact: any) {
-    this.parent.openEditForm(contact)
+  onSubmitUpdateContact(updateContacted: Contacts)
+  {
+    this.parent.onUpdateContact(updateContacted)
   }
 
+
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
+
+
+  //open the Form
+  openEditForm(contactEditForm: any , Currentcontact : any ) {
+    this.editContact = Currentcontact;
+    this.modalService.open(contactEditForm, {ariaLabelledBy: 'editModelForm'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
 
 
 }
