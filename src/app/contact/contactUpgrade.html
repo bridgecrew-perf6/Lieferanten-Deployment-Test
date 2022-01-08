@@ -52,7 +52,7 @@
               <!-- Last Name -->
               <div class="form-group">
                 <label for="lastName">Nachname *</label>
-                <input ngModel="contactName" name="name" id="lastName" type="text" class="form-control"
+                <input ngModel name="name" id="lastName" type="text" class="form-control"
                        placeholder="Nachname <Optional>" required>
               </div>
 
@@ -105,8 +105,13 @@
                   class="btn btn-outline-dark"
                   [disabled]="addContactForm.invalid"
                   (click)="onAddContact(addContactForm);
-                   modal.close()">Save
+                   modal.close()">Speicher
           </button>
+
+          <button class="btn btn-danger " type="button"  aria-label="Close" (click)="modal.dismiss('Cross click')">
+            Cancel
+          </button>
+
         </div>
       </ng-template>
     </section>
@@ -118,9 +123,9 @@
       <div class="container-fluid">
 
         <div class="row">
-            <div class="card">
-              <button class="btn btn-lg btn-success" (click)="open(contact)">neue Kontakt hinzufügen</button>
-            </div>
+          <div class="card">
+            <button class="btn btn-lg btn-success" (click)="open(contact)">neue Kontakt hinzufügen</button>
+          </div>
         </div>
 
         <!-- Display Contacts -->
