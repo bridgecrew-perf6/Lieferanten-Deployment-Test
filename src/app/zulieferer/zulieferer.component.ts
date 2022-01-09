@@ -16,8 +16,13 @@ import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 export class ZuliefererComponent implements OnInit {
 
   zulieferer: Zulieferer[] = [];
-  zuliefercontactList: Contacts[] = [];
+  miogazulieferer: Zulieferer[] = [];
+  emkZulieferer: Zulieferer[];
 
+
+
+
+  zuliefercontactList: Contacts[] = [];
   deleteZulieferer: Zulieferer;
   showZuliefererContact: Zulieferer;
 
@@ -87,9 +92,21 @@ export class ZuliefererComponent implements OnInit {
     this.getZulieferer()
   }
 
+  //get all Zulieferer
+
   public getZulieferer(): void {
     this.zuliefererServices.getAll().subscribe((receivedData) => (
       this.zulieferer = receivedData)
+    );
+
+    //get Mioga Zulieferer
+    this.zuliefererServices.getMiogaZuLieferer().subscribe((receivedData) => (
+      this.miogazulieferer = receivedData)
+    );
+
+    //get EMK Zulieferer
+    this.zuliefererServices.getEmkZulieferer().subscribe((receivedData) => (
+      this.emkZulieferer = receivedData)
     );
   }
 
@@ -126,7 +143,6 @@ export class ZuliefererComponent implements OnInit {
       }
     );
   }
-
 
   public openAddZuliefererForm(contact: any) {
     this.modalService.open(contact, {ariaLabelledBy: 'addModelForm'}).result.then((result) => {

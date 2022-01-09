@@ -11,8 +11,6 @@ import { ContactComponent } from './contact/contact.component';
 import {VarDirective} from "./zulieferer/ng-var.directive";
 import { HomeComponent } from './home/home.component';
 import { DownloadComponent } from './download/download.component';
-import {EmkComponent} from "./zulieferer/emk/emk.component";
-import {MiogaComponent} from "./zulieferer/mioga/mioga.component";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ContactsContentComponent } from './contact/contacts-content/contacts-content.component';
 import { ZuliefererContentComponent } from './zulieferer/zulieferer-content/zulieferer-content.component';
@@ -27,8 +25,6 @@ import { ZuliefererContentComponent } from './zulieferer/zulieferer-content/zuli
     VarDirective,
     HomeComponent,
     DownloadComponent,
-    EmkComponent,
-    MiogaComponent,
     ContactsContentComponent,
     ZuliefererContentComponent
   ],

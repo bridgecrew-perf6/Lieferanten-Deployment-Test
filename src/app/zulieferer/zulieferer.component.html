@@ -29,7 +29,8 @@
   <!--  /Page Header -->
 
 
-  <!--  Page content TableData -->
+
+  <!--  Page All content TableData -->
   <section class="content">
     <div class="container-fluid">
       <app-zulieferer-content [ZuliefererList]="zulieferer"
@@ -38,6 +39,27 @@
     </div>
   </section>
   <!-- / Page content TableData -->
+
+
+
+  <!--  Page Mioga content TableData
+  <section class="content" *ngSwitchCase="'mioga'">
+    <div class="container-fluid">
+      <app-zulieferer-content [ZuliefererList]="zulieferer"
+                              [zuliefercontactList]="zuliefercontactList">
+      </app-zulieferer-content>
+    </div>
+  </section>
+
+  <section class="content" *ngSwitchCase="'emk'">
+    <div class="container-fluid">
+      <app-zulieferer-content [ZuliefererList]="zulieferer"
+                              [zuliefercontactList]="zuliefercontactList">
+      </app-zulieferer-content>
+    </div>
+  </section>
+
+  -->
 
 
   <!-- Notification If No Zulieferer -->
