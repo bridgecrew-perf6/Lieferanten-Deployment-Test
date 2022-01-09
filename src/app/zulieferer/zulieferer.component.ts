@@ -18,8 +18,9 @@ export class ZuliefererComponent implements OnInit {
   zulieferer: Zulieferer[] = [];
   zuliefercontactList: Contacts[] = [];
 
-  public deleteZulieferer: Zulieferer;
-  public showZuliefererContact: Zulieferer;
+  deleteZulieferer: Zulieferer;
+  showZuliefererContact: Zulieferer;
+
   defaulttilte = "Ms";
   belongsTo = "Mioga";
   control = false;
@@ -129,7 +130,7 @@ export class ZuliefererComponent implements OnInit {
   }
 
 
-  public openAddZuliefererForm(contact : any) {
+  public openAddZuliefererForm(contact: any) {
     this.modalService.open(contact, {ariaLabelledBy: 'addModelForm'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
