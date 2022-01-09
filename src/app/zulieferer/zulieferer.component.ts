@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Zulieferer} from "./zulieferer";
 import {HttpErrorResponse} from "@angular/common/http";
 import {ZuliefererServices} from "./zulieferer.services";
@@ -79,9 +79,7 @@ export class ZuliefererComponent implements OnInit {
       }
     )
     console.log(this.control)
-
     this.zuliefererForm.reset()
-
   }
 
 

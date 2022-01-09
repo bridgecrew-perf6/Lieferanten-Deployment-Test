@@ -1,62 +1,53 @@
-<div id="main-container">
+<div class="content-wrapper">
 
-  <div class="content-wrapper">
+  <!--  Page Header -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1> Lieferanten
+            <button class="btn btn-lg btn-success" (click)="openAddZuliefererForm(ZuliefererAddModal)">neue Zulieferer
+              hinzufügen
+            </button>
+          </h1>
+        </div>
 
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1> Lieferanten
-              <button class="btn btn-lg btn-success" (click)="openAddZuliefererForm(ZuliefererAddModal)">neue Zulieferer
-                hinzufügen
-              </button>
-            </h1>
-          </div>
-
-          <div class="row">
-            <div class="card">
-            </div>
-          </div>
-
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Lieferanten</li>
-            </ol>
+        <div class="row">
+          <div class="card">
           </div>
         </div>
-      </div><!-- /.container-fluid -->
-    </section>
 
-
-    <section class="content">
-      <div class="container-fluid">
-
-        <!-- New Display The TableData -->
-        <app-zulieferer-content
-          [ZuliefererList]="zulieferer"
-          [zuliefercontactList]="zuliefercontactList">
-
-        </app-zulieferer-content>
-        <!--  /New Display The TableData -->
-      </div>
-    </section>
-
-
-    <!---------- Notification If No Zulieferer ----------->
-    <div *ngIf="zulieferer?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
-      <div class="alert alert-info" role="alert">
-        <h4 class="alert-heading">Kein Zulieferer!</h4>
-
-
-        <!--Button trigger model-->
-
-        <a (click)="onOpenModal(null, 'add')" type="button" class="btn btn-info btn-lg" data-toggle="modal"
-           data-target="#myModal"
-           style="position: absolute; right: 50px; margin-top: 30px;"> Add </a>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Lieferanten</li>
+          </ol>
+        </div>
       </div>
     </div>
+  </section>
+  <!--  /Page Header -->
+
+
+  <!--  Page content TableData -->
+  <section class="content">
+    <div class="container-fluid">
+      <app-zulieferer-content [ZuliefererList]="zulieferer"
+                              [zuliefercontactList]="zuliefercontactList">
+      </app-zulieferer-content>
+    </div>
+  </section>
+  <!-- / Page content TableData -->
+
+
+  <!-- Notification If No Zulieferer -->
+  <div *ngIf="zulieferer?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
+    <div class="alert alert-info" role="alert">
+      <h4 class="alert-heading">Kein Zulieferer!</h4>
+
+    </div>
   </div>
+  <!-- /Notification If No Zulieferer -->
 
 </div>
 
