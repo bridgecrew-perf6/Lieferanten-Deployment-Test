@@ -16,7 +16,7 @@ export class ContactsContentComponent implements OnInit {
   public editContact: Contacts | undefined;
   Contactdefaultvalue = 'Ms';
   closeResult = '';
-
+  deleteContact: Contacts;
   constructor(private contactService: ContactServices, private parent: ContactComponent, private modalService: NgbModal) {
   }
 
@@ -45,6 +45,7 @@ export class ContactsContentComponent implements OnInit {
 
 
   //open the Form
+
   openEditForm(contactEditForm: any, Currentcontact: any) {
     this.editContact = Currentcontact;
     this.modalService.open(contactEditForm, {ariaLabelledBy: 'editModelForm'}).result.then((result) => {
@@ -55,4 +56,12 @@ export class ContactsContentComponent implements OnInit {
   }
 
 
+  onShowDeleteQustion(deleteQuestionModel: any, Currentcontact: Contacts ) {
+    this.deleteContact = Currentcontact
+    this.modalService.open(deleteQuestionModel, {ariaLabelledBy: 'contactDeleteModelFormHeader'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
 }

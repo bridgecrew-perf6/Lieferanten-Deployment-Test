@@ -49,9 +49,9 @@
       <td>
         <!-- The Two Button -->
         <button class="btn btn-primary" (click)="openEditForm(contactEditForm , contact)" style="margin-right: 20px; ">
-          Edit <i class="fa fa-pencil-alt" style="margin-left: 10px;"></i></button>
+          Bearbeiten <i class="fa fa-pencil-alt" style="margin-left: 10px;"></i></button>
 
-        <button class="btn btn-danger" (click)="onDeleteContact(contact.id)"> delete <i class="fa fa-times"
+        <button class="btn btn-danger" (click)="onShowDeleteQustion(deleteQuestionModel,contact)"> Entfernen <i class="fa fa-times"
                                                                                         style="margin-left:10px;"></i>
         </button>
       </td>
@@ -173,3 +173,40 @@
   </ng-template>
 </section>
 <!-- /Edit Contact Modal -->
+
+<!-- Show Delete Contact Question -->
+<section>
+  <ng-template #deleteQuestionModel let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="contactDeleteModelFormHeader">Kontakte</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <p> möchten Sie {{deleteContact?.title}} mit {{deleteContact?.id}} entfernen ?</p>
+    </div>
+
+    <div class="modal-footer">
+
+      <button
+        (click)="
+        onDeleteContact(deleteContact?.id);
+        modal.close()"
+        class="btn btn-danger"
+        data-dismiss="modal"> Ja
+      </button>
+
+      <button
+        class="btn btn-primary"
+        type="button" aria-label="Close"
+        (click)="modal.dismiss('Cross click')">
+        Nein
+      </button>
+
+    </div>
+
+  </ng-template>
+</section>
+<!-- / Show Delete Contact Question -->
