@@ -4,7 +4,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {ZuliefererServices} from "./zulieferer.services";
 import {Contacts} from "../contact/contact";
 import {FormArray, FormBuilder, Validators} from "@angular/forms";
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -17,57 +17,53 @@ export class ZuliefererComponent implements OnInit {
 
   zulieferer: Zulieferer[] = [];
   zuliefercontactList: Contacts[] = [];
-  public editZulieferer: Zulieferer;
+
   public deleteZulieferer: Zulieferer;
   public showZuliefererContact: Zulieferer;
   defaulttilte = "Ms";
   belongsTo = "Mioga";
   control = false;
-
-
-
-
+  closeResult = '';
 
   zuliefererForm = this.fromBuilder.group({
     'title': ['', Validators.required],
     'description': ['',],
     'belongsTo': ['MIOGA', Validators.required],
-    contacts : this.fromBuilder.array([])
+    contacts: this.fromBuilder.array([])
   })
 
 
-  constructor(private zuliefererServices: ZuliefererServices , private fromBuilder : FormBuilder , private modalService: NgbModal
-  ) {}
+  constructor(private zuliefererServices: ZuliefererServices, private fromBuilder: FormBuilder, private modalService: NgbModal
+  ) {
+  }
 
 
-  get contacts(){
+  get contacts() {
     return this.zuliefererForm.controls["contacts"] as FormArray
   }
 
 
-
-
-  get contactLenth(){
+  get contactLenth() {
     return this.contacts.length
   }
 
-
   AddContact() {
     const contactForm = this.fromBuilder.group({
-      'title': ['Ms' , Validators.required],
-      'description':[''],
+      'title': ['Ms', Validators.required],
+      'description': [''],
       'company': ['', Validators.required],
-      'vorname':  [''],
-      'name':  ['', Validators.required],
-      'telefone':  ['', ],
-      'mobile':  [''],
-      'email': ['', Validators.required , Validators.email],
-      'anmerkung':  ['']
+      'vorname': [''],
+      'name': ['', Validators.required],
+      'telefone': ['',],
+      'mobile': [''],
+      'email': ['', Validators.required, Validators.email],
+      'anmerkung': ['']
 
     })
     this.contacts.push(contactForm);
   }
-  deleteContact(ContactFromIndex : number) {
+
+  deleteContact(ContactFromIndex: number) {
     this.contacts.removeAt(ContactFromIndex)
   }
 
@@ -88,11 +84,9 @@ export class ZuliefererComponent implements OnInit {
   }
 
 
-
   ngOnInit(): void {
     this.getZulieferer()
   }
-
 
   public getZulieferer(): void {
     this.zuliefererServices.getAll().subscribe((receivedData) => (
@@ -110,7 +104,6 @@ export class ZuliefererComponent implements OnInit {
     );
   }
 
-
   public onUpdateZulieferer(updateZulieferer: Zulieferer): void {
     this.zuliefererServices.updateZulieferer(updateZulieferer).subscribe(
       (response: Zulieferer) => {
@@ -122,7 +115,6 @@ export class ZuliefererComponent implements OnInit {
       }
     )
   }
-
 
   public onDeleteZulieferer(zulieferId: any): void {
     this.zuliefererServices.deleteZulieferer(zulieferId).subscribe(
@@ -136,34 +128,23 @@ export class ZuliefererComponent implements OnInit {
     );
   }
 
-  public onOpenModal(zulieferer: any, mode: string): void {
 
-    const container = document.getElementById('main-container');
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.style.display = 'none';
-
-    button.setAttribute('data-toggle', 'modal');
-    if (mode === 'add') {
-      button.setAttribute('data-target', '#addZuliefererModal');
-    }
-    if (mode === 'edit') {
-      this.editZulieferer = zulieferer;
-      button.setAttribute('data-target', '#updateZuliefererModal');
-    }
-    if (mode === 'delete') {
-      this.deleteZulieferer = zulieferer;
-      button.setAttribute('data-target', '#deleteZulieferereModal');
-    }
-    if (mode === 'showContact') {
-      button.setAttribute('data-target', "#zulieferContact")
-    }
-
-
-    // @ts-ignore
-    container.appendChild(button);
-    button.click();
+  public openAddZuliefererForm(contact : any) {
+    this.modalService.open(contact, {ariaLabelledBy: 'addModelForm'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
   }
 
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
 
 }

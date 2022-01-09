@@ -6,11 +6,18 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1> Lieferanten <a (click)="onOpenModal(null, 'add')"
-                                type="button" class="btn btn-success btn-lg"
-                                data-toggle="modal"
-                                data-target="#myModal"> neue hinzufügen ?</a></h1>
+            <h1> Lieferanten
+              <button class="btn btn-lg btn-success" (click)="openAddZuliefererForm(ZuliefererAddModal)">neue Zulieferer
+                hinzufügen
+              </button>
+            </h1>
           </div>
+
+          <div class="row">
+            <div class="card">
+            </div>
+          </div>
+
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -22,432 +29,18 @@
     </section>
 
 
-    <!--  Display The TableData -->
     <section class="content">
       <div class="container-fluid">
 
-        <div *ngFor="let zulieferer of zulieferer">
-          <!-- row -->
-          <div class="row" *ngVar="zulieferer.id as zuliefererID">
-            <div class="col-12">
-              <!-- Liferant 01 -->
-              <div class="card">
-                <div class="card-header">
+        <!-- New Display The TableData -->
+        <app-zulieferer-content
+          [ZuliefererList]="zulieferer"
+          [zuliefercontactList]="zuliefercontactList">
 
-                  <h3 class="card-title">
-                    <i class="far fa-chart-bar"></i>
-                    {{zulieferer.title}}
-                  </h3>
-
-                  <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                      <i class="fas fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-tool" data-card-widget="remove">
-                      <i class="fas fa-times"></i>
-                    </button>
-                  </div>
-                </div>
-
-                <!-- /.card-header -->
-                <div class="card-body">
-
-                  <div class="row">
-
-                    <div class="card-body table-responsive p-0">
-                      <table class="table table-hover text-nowrap">
-                        <thead>
-                        <tr>
-                          <th>ID</th>
-                          <th>Title</th>
-                          <th>Beschreibung</th>
-                          <th>Kontakte</th>
-                          <th>Gehört zu</th>
-                          <th>Aktion</th>
-                        </tr>
-                        </thead>
-
-                        <tbody>
-                        <tr>
-                          <td>{{zulieferer.id}}</td>
-                          <td>{{zulieferer.title}}</td>
-                          <td>{{zulieferer.description}}</td>
-                          <td>
-
-                            <button id="showContactButton" class="btn btn-primary"
-                                    (click)="getZuliefererContacts(zulieferer)" data-target="#modalID"
-                                    data-toggle="modal">Show contacts
-                            </button>
-
-                          </td>
-                          <td><b>{{zulieferer.belongsTo}}</b></td>
-                          <td> <!-- The Two Button -->
-                            <button (click)="onOpenModal(zulieferer, 'edit')" class="btn btn-primary"
-                                    style="margin-right: 20px; ">
-                              Edit <i class="fa fa-pencil-alt" style="margin-left: 10px;"></i></button>
-                            <button (click)="onOpenModal(zulieferer , 'delete')" class="btn btn-danger"> delete <i
-                              class="fa fa-times" style="margin-left:10px;"></i></button>
-                          </td>
-                        </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- /.col -->
-            </div>
-            <!-- /.row for first Liferant end here -->    <!-- row -->
-          </div>
-        </div>
-
-
-        <!-- Modal -->
-        <div class="modal fade" id="modalID" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
-
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Kontakten</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-
-                <div class="card-body pb-0" *ngFor="let contact of zuliefercontactList">
-                  <div class="card bg-light d-flex flex-fill">
-                    <!-- header Title-->
-                    <div class="card-header text-muted border-bottom-0">
-                      {{contact.company}}
-                    </div>
-                    <!-- card body -->
-                    <div class="card-body pt-0">
-                      <div class="row">
-                        <div class="col-7">
-                          <h2 class="lead"><b> {{contact.title}} {{contact.vorname}} {{contact.name}}</b></h2>
-                          <p class="text-muted text-sm"><b> Beschreibung : </b> {{contact.description}} </p>
-                          <ul class="ml-4 mb-0 fa-ul text-muted">
-                            <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span>
-                              Email: {{contact.email}}
-                            </li>
-                            <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Mobile:
-                              : {{contact.mobile}}
-                            </li>
-                            <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Tel:
-                              : {{contact.telefone}}
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-
-              </div>
-
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-
-
-        </div>
-
+        </app-zulieferer-content>
+        <!--  /New Display The TableData -->
       </div>
     </section>
-    <!--
-        <section class="content">
-          <div class="row">
-            <a (click)="onOpenModal(null, 'add')"
-               type="button" class="btn btn-info btn-lg"
-               data-toggle="modal"
-               data-target="#myModal"> Add</a>
-          </div>
-        </section>
-
-      </div>
-    -->
-
-
-    <!--------------- Add Zulieferer --------------->
-
-    <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="addZuliefererModal">
-      <div class="modal-dialog  modal-xl" role="document">
-        <div class="modal-content">
-
-          <!-- Modal Header -->
-          <div class="modal-header">
-            <h3 class="modal-title" id="addZuliefererModalLabel">Zulieferer hinzufügen</h3>
-            <!-- Add Zulieferer Button -->
-          </div>
-
-
-          <form [formGroup]="zuliefererForm">
-            <!-- Modal body -->
-            <div class="modal-body">
-
-              <div class="container">
-
-                <div class="row">
-                  <div class="col">
-                    <h4 class="modal-title">Zulieferer Daten</h4>
-                  </div>
-                </div>
-              </div>
-
-
-              <!-- Add Form Body -->
-              <div class="modal-body">
-
-                <!-- Add Zulieferer Form -->
-
-
-                <div class="form-group">
-                  <label for="titleAdd">Title *</label>
-                  <input
-                    type="text"
-                    id="titleAdd"
-                    placeholder="Title"
-                    formControlName="title"
-                    class="form-control">
-                </div>
-
-                <!-- Belongs To -->
-                <div class="form-group">
-                  <label for="belongsTo"> Gehört Zu * </label>
-                  <select class="form-control"
-                          formControlName="belongsTo"
-                          id="belongsTo">
-                    <option class="form-control">MIOGA</option>
-                    <option class="form-control"> EMK</option>
-                  </select>
-                </div>
-
-                <div class="form-group">
-                  <label for="description">Beschreibung</label>
-                  <input
-                    placeholder="Beschreibung <Optional>"
-                    type="text"
-                    id="description"
-                    formControlName="description"
-                    class="form-control">
-                </div>
-
-                <ng-container formArrayName="contacts">
-                  <ng-container *ngFor="let contactForm of contacts.controls; let i = index">
-
-                    <div class="row">
-                      <div class="col">
-                        <h4 class="modal-title">Kontakt Daten</h4>
-                      </div>
-                    </div>
-                    <div class="modal-body">
-                      <div [formGroup]="contactForm">
-                        <!-- Title -->
-                        <div class="form-group">
-                          <label>Title *</label>
-                          <select name="title"
-                                  formControlName="title"
-                                  class="form-control">
-                            <option class="form-control">Ms</option>
-                            <option class="form-control">Mr</option>
-                          </select>
-                        </div>
-
-                        <!-- First Name -->
-                        <div class="form-group">
-                          <label>Vorname</label>
-                          <input formControlName="vorname" type="text" class="form-control"
-                                 placeholder="Vorname <Optional>">
-                        </div>
-
-                        <!-- Last Name -->
-                        <div class="form-group">
-                          <label>Nachname * </label>
-                          <input formControlName="name" type="text" class="form-control"
-                                 placeholder="Nachname <Optional>">
-                        </div>
-
-                        <!-- Email -->
-                        <div class="form-group">
-                          <label> Email * </label>
-                          <input formControlName="email" name="email" type="email" class="form-control"
-                                 placeholder="Email">
-                        </div>
-
-                        <!-- Company -->
-                        <div class="form-group">
-                          <label> Firma *</label>
-                          <input formControlName="company" name="company" type="text" class="form-control"
-                                 placeholder="Firma">
-                        </div>
-
-                        <!-- Mobile -->
-                        <div class="form-group">
-                          <label> Mobile</label>
-                          <input formControlName="mobile" name="mobile" type="text" class="form-control"
-                                 placeholder="Mobile <Optional>">
-                        </div>
-
-                        <!-- Telephone -->
-                        <div class="form-group">
-                          <label>Telephone</label>
-                          <input formControlName="telefone" name="telefone" type="text" class="form-control"
-                                 placeholder="Telephone <Optional>">
-                        </div>
-
-                        <!-- Description -->
-                        <div class="form-group">
-                          <label>Beschreibung</label>
-                          <input formControlName="description" name="description" type="text" class="form-control"
-                                 placeholder="Beschreibung <Optional>">
-                        </div>
-
-                        <!-- Anmerkung -->
-                        <div class="form-group">
-                          <label>Anmerkung</label>
-                          <input formControlName="anmerkung" name="anmerkung" type="text" class="form-control"
-                                 placeholder="Anmerkung <Optional>">
-                        </div>
-
-                        <button class="btn btn-danger" type="button" (click)="deleteContact(i)"> Kontakt löschen
-                        </button>
-                      </div>
-                    </div>
-                    <hr>
-                  </ng-container>
-                </ng-container>
-                <button class="btn btn-success" type="button" (click)="AddContact()"> Add Contact</button>
-              </div>
-            </div>
-
-            <div class="modal-footer">
-              <button id="close" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <ng-container *ngIf=" contactLenth > 0">
-                <button [disabled]="zuliefererForm.invalid " class="btn btn-primary" (click)="onAddzulieferer()">
-                  Speicher
-                </button>
-              </ng-container>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-
-
-    <!--------------- Edit Zulieferer --------------->
-    <div class="modal fade" id="updateZuliefererModal" tabindex="-1" role="dialog"
-         aria-labelledby="zuliefererEditModalLabel" aria-hidden="true">
-
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="updateZuliefererModalLabel">Edit Zulieferer {{editZulieferer?.id}}</h5>
-          </div>
-
-          <div class="modal-body">
-            <form #editForm="ngForm">
-
-              <input type="hidden" ngModel="{{editZulieferer?.id}}" name="id" class="form-control" id="idEdit"
-                     placeholder="id">
-
-              <!-- title -->
-              <div class="form-group">
-                <label for="titleEdit">Title</label>
-                <input type="text" ngModel="{{editZulieferer?.title}}" name="title" class="form-control"
-                       id="titleEdit" placeholder="title">
-              </div>
-
-              <!--description-->
-              <div class="form-group">
-                <label for="descriptionEdit">Description</label>
-                <input ngModel="{{editZulieferer?.description}}" name="description" id="descriptionEdit"
-                       type="text"
-                       class="form-control" placeholder="description">
-              </div>
-
-              <!-- belongs TO -->
-              <div class="form-group">
-                <label for="belongsToEdit">BelongsTO *</label>
-                <select name="belongsTo" ngModel="{{editZulieferer?.belongsTo}}"
-                        class="custom-select form-control-border"
-                        id="belongsToEdit" required="required">
-                  <option>MIOGA</option>
-                  <option>EMK</option>
-                </select>
-              </div>
-              <!-- uuid -->
-
-              <input type="hidden" ngModel="{{editZulieferer?.uuid}}" name="uuid" id="uuidEdit"
-                     class="form-control">
-
-              <!-- Succeed at -->
-              <div class="form-group">
-                <input type="hidden" ngModel="{{editZulieferer?.successAt}}" name="successAt" id="succeedAtEdit"
-                       class="form-control">
-              </div>
-
-              <!-- timetableId -->
-              <div class="form-group">
-                <label for="timetableIdEdit">Time Table ID</label>
-                <input ngModel="{{editZulieferer?.timetableId}}" name="timetableId" id="timetableIdEdit"
-                       type="text"
-                       class="form-control"
-                       placeholder="Time Table ID">
-              </div>
-
-
-              <div class="modal-footer">
-
-                <!-- close Button for edit Form  -->
-                <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
-
-                <!-- save Changes Button for Edit Form -->
-
-                <button (click)="onUpdateZulieferer(editForm.value)" data-dismiss="modal"
-                        class="btn btn-primary">
-                  Save
-                  changes
-                </button>
-              </div>
-
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-    <!--------------- delete Zulieferer --------------->
-
-    <div class="modal fade" id="deleteZulieferereModal" tabindex="-1" role="dialog"
-         aria-labelledby="deleteModelLabel"
-         aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="deleteModelLabel">Delete Employee</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p> möchten Sie  {{deleteZulieferer?.title}} entfernen ?</p>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-              <button (click)="onDeleteZulieferer(deleteZulieferer?.id)" class="btn btn-danger"
-                      data-dismiss="modal">
-                Yes
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
 
     <!---------- Notification If No Zulieferer ----------->
@@ -465,5 +58,172 @@
     </div>
   </div>
 
-
 </div>
+
+
+<!-- Add Zulieferer Modal -->
+<section>
+  <ng-template #ZuliefererAddModal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="addModelForm">Neue Zulieferer</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <form [formGroup]="zuliefererForm">
+        <!-- Modal body -->
+        <div class="modal-body">
+
+          <div class="container">
+
+            <div class="row">
+              <div class="col">
+                <h4 class="modal-title">Zulieferer Daten</h4>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Add Form Body -->
+          <div class="modal-body">
+
+            <!-- Add Zulieferer Form -->
+
+
+            <div class="form-group">
+              <label for="titleAdd">Title *</label>
+              <input
+                type="text"
+                id="titleAdd"
+                placeholder="Title"
+                formControlName="title"
+                class="form-control">
+            </div>
+
+            <!-- Belongs To -->
+            <div class="form-group">
+              <label for="belongsTo"> Gehört Zu * </label>
+              <select class="form-control"
+                      formControlName="belongsTo"
+                      id="belongsTo">
+                <option class="form-control">MIOGA</option>
+                <option class="form-control"> EMK</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="description">Beschreibung</label>
+              <input
+                placeholder="Beschreibung <Optional>"
+                type="text"
+                id="description"
+                formControlName="description"
+                class="form-control">
+            </div>
+
+            <ng-container formArrayName="contacts">
+              <ng-container *ngFor="let contactForm of contacts.controls; let i = index">
+
+                <div class="row">
+                  <div class="col">
+                    <h4 class="modal-title">Kontakt Daten</h4>
+                  </div>
+                </div>
+                <div class="modal-body">
+                  <div [formGroup]="contactForm">
+                    <!-- Title -->
+                    <div class="form-group">
+                      <label>Title *</label>
+                      <select name="title"
+                              formControlName="title"
+                              class="form-control">
+                        <option class="form-control">Ms</option>
+                        <option class="form-control">Mr</option>
+                      </select>
+                    </div>
+
+                    <!-- First Name -->
+                    <div class="form-group">
+                      <label>Vorname</label>
+                      <input formControlName="vorname" type="text" class="form-control"
+                             placeholder="Vorname <Optional>">
+                    </div>
+
+                    <!-- Last Name -->
+                    <div class="form-group">
+                      <label>Nachname * </label>
+                      <input formControlName="name" type="text" class="form-control"
+                             placeholder="Nachname <Optional>">
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-group">
+                      <label> Email * </label>
+                      <input formControlName="email" name="email" type="email" class="form-control"
+                             placeholder="Email">
+                    </div>
+
+                    <!-- Company -->
+                    <div class="form-group">
+                      <label> Firma *</label>
+                      <input formControlName="company" name="company" type="text" class="form-control"
+                             placeholder="Firma">
+                    </div>
+
+                    <!-- Mobile -->
+                    <div class="form-group">
+                      <label> Mobile</label>
+                      <input formControlName="mobile" name="mobile" type="text" class="form-control"
+                             placeholder="Mobile <Optional>">
+                    </div>
+
+                    <!-- Telephone -->
+                    <div class="form-group">
+                      <label>Telephone</label>
+                      <input formControlName="telefone" name="telefone" type="text" class="form-control"
+                             placeholder="Telephone <Optional>">
+                    </div>
+
+                    <!-- Description -->
+                    <div class="form-group">
+                      <label>Beschreibung</label>
+                      <input formControlName="description" name="description" type="text" class="form-control"
+                             placeholder="Beschreibung <Optional>">
+                    </div>
+
+                    <!-- Anmerkung -->
+                    <div class="form-group">
+                      <label>Anmerkung</label>
+                      <input formControlName="anmerkung" name="anmerkung" type="text" class="form-control"
+                             placeholder="Anmerkung <Optional>">
+                    </div>
+
+                    <button class="btn btn-danger" type="button" (click)="deleteContact(i)"> Kontakt löschen
+                    </button>
+                  </div>
+                </div>
+                <hr>
+              </ng-container>
+            </ng-container>
+            <button class="btn btn-success" type="button" (click)="AddContact()"> Add Contact</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-danger " type="button" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        Cancel
+      </button>
+      <ng-container *ngIf=" contactLenth > 0">
+        <button [disabled]="zuliefererForm.invalid " class="btn btn-primary" (click)="onAddzulieferer(); modal.close()">
+          Zulieferer Speicher
+        </button>
+      </ng-container>
+    </div>
+  </ng-template>
+</section>
+<!-- /Add Zulieferer Modal -->
+
+
