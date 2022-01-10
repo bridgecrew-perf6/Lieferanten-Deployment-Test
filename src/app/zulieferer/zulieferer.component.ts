@@ -79,11 +79,12 @@ export class ZuliefererComponent implements OnInit {
     this.zuliefererServices.createZulieferer(this.zuliefererForm.value).subscribe(
       (response: Zulieferer) => {
         console.log(response);
+        alert('Neue Zulieferer ' + response.title + ' hinzugefügt')
         this.getZulieferer();
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
-      }
+      },
     )
     console.log(this.control)
     this.zuliefererForm.reset()
@@ -165,14 +166,13 @@ export class ZuliefererComponent implements OnInit {
     }
   }
 
+
   switchToMioga() {
     this.value = 2
   }
-
   switchToEmk() {
     this.value = 3
   }
-
   switchToAll() {
     this.value = 1
   }
