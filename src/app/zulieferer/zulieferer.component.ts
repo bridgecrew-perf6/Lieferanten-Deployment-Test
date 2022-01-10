@@ -31,6 +31,8 @@ export class ZuliefererComponent implements OnInit {
   control = false;
   closeResult = '';
 
+  value = 3;
+
   zuliefererForm = this.fromBuilder.group({
     'title': ['', Validators.required],
     'description': ['',],
@@ -93,6 +95,7 @@ export class ZuliefererComponent implements OnInit {
   }
 
   //get all Zulieferer
+
 
   public getZulieferer(): void {
     this.zuliefererServices.getAll().subscribe((receivedData) => (
@@ -162,4 +165,15 @@ export class ZuliefererComponent implements OnInit {
     }
   }
 
+  switchToMioga() {
+    this.value = 2
+  }
+
+  switchToEmk() {
+    this.value = 3
+  }
+
+  switchToAll() {
+    this.value = 1
+  }
 }

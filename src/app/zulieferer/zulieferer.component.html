@@ -4,12 +4,23 @@
   <section class="content-header">
     <div class="container-fluid">
       <div class="row mb-2">
+
         <div class="col-sm-6">
-          <h1> Lieferanten
-            <button class="btn btn-lg btn-success" (click)="openAddZuliefererForm(ZuliefererAddModal)">neue Zulieferer
+          <h1 (click)="switchToAll()"> Lieferanten
+            <button class="btn btn btn-success" (click)="openAddZuliefererForm(ZuliefererAddModal)">neue Zulieferer
               hinzufügen
             </button>
           </h1>
+
+          <br>
+          <div class="row">
+            <button class="btn btn-outline-dark"  (click)="switchToAll()"> Lieferanten</button>
+            <button class="btn btn-outline-info" style="margin-left: 1em;" (click)="switchToMioga()"> Mioga</button>
+            <button class="btn btn-outline-warning" style="margin-left: 1em;" (click)="switchToEmk()"> Emk</button>
+
+          </div>
+
+
         </div>
 
         <div class="row">
@@ -25,41 +36,43 @@
         </div>
       </div>
     </div>
+
   </section>
   <!--  /Page Header -->
 
 
-
   <!--  Page All content TableData -->
-  <section class="content">
-    <div class="container-fluid">
-      <app-zulieferer-content [ZuliefererList]="zulieferer"
-                              [zuliefercontactList]="zuliefercontactList">
-      </app-zulieferer-content>
-    </div>
-  </section>
+
   <!-- / Page content TableData -->
 
 
+  <section [ngSwitch]="value">
 
-  <!--  Page Mioga content TableData
-  <section class="content" *ngSwitchCase="'mioga'">
-    <div class="container-fluid">
-      <app-zulieferer-content [ZuliefererList]="zulieferer"
-                              [zuliefercontactList]="zuliefercontactList">
-      </app-zulieferer-content>
-    </div>
+    <section class="content" *ngSwitchCase="1">
+      <div class="container-fluid">
+        <app-zulieferer-content [ZuliefererList]="zulieferer"
+                                [zuliefercontactList]="zuliefercontactList">
+        </app-zulieferer-content>
+      </div>
+    </section>
+
+    <section class="content" *ngSwitchCase="2">
+      <div class="container-fluid">
+        <app-zulieferer-content [ZuliefererList]="miogazulieferer"
+                                [zuliefercontactList]="zuliefercontactList">
+        </app-zulieferer-content>
+      </div>
+    </section>
+
+    <section class="content" *ngSwitchCase="'3'">
+      <div class="container-fluid">
+        <app-zulieferer-content [ZuliefererList]="emkZulieferer"
+                                [zuliefercontactList]="zuliefercontactList">
+        </app-zulieferer-content>
+      </div>
+    </section>
+
   </section>
-
-  <section class="content" *ngSwitchCase="'emk'">
-    <div class="container-fluid">
-      <app-zulieferer-content [ZuliefererList]="zulieferer"
-                              [zuliefercontactList]="zuliefercontactList">
-      </app-zulieferer-content>
-    </div>
-  </section>
-
-  -->
 
 
   <!-- Notification If No Zulieferer -->
