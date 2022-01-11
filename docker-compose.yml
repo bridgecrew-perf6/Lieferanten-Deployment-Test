@@ -3,7 +3,7 @@ version: '2'
 services:
 
   backend-app:
-    build: ./balena-mioga-lieferanten-backend
+    image: moody26/backend
     container_name: mioga-lieferanten-backend
     ports:
       - 8080:8080
@@ -11,7 +11,7 @@ services:
 
 
   frontend-app:
-    build: ./balena-mioga-lieferanten-frontend
+    image: moody26/frontend
     container_name: mioga-lieferanten-frontend
     ports:
       - 4200:80
